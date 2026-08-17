@@ -1,5 +1,4 @@
 ---
-import FadeIn from '@/components/landing/FadeIn.astro';
 import PillLink from '@/components/landing/PillLink.astro';
 import LandingImage from '@/components/landing/LandingImage.astro';
 import { landingImages, scaledImageDimensions } from '@/lib/landing-images';
@@ -25,7 +24,7 @@ const salonImage = scaledImageDimensions(landingImages.salon, 400);
         landingBleedWhite,
     ]}
 >
-    <FadeIn class="relative order-2 md:order-0 md:col-span-7 md:pb-20">
+    <div class="relative order-2 md:order-0 md:col-span-7 md:pb-20">
         <div class={`relative mx-auto w-full max-w-sm px-2 ${landingMobileOnly}`}>
             <div
                 class="relative aspect-3/4 w-full overflow-hidden rounded-4xl border border-stone-200/80 bg-white/60 p-2 shadow-[0_16px_36px_-10px_rgba(58,48,39,0.12)]"
@@ -86,10 +85,9 @@ const salonImage = scaledImageDimensions(landingImages.salon, 400);
                 />
             </div>
         </div>
-    </FadeIn>
+    </div>
 
-    <FadeIn
-        delay={0.1}
+    <div
         class="order-1 flex flex-col items-center text-center md:order-0 md:col-span-5 md:max-w-md md:justify-self-end md:items-start md:pr-8 md:text-left"
     >
         <div class={landingEyebrowMuted}>
@@ -103,5 +101,5 @@ const salonImage = scaledImageDimensions(landingImages.salon, 400);
             thoughtfully considered to make your visit feel personal, comfortable, and enjoyable.
         </p>
         <PillLink href="#services" class="mt-7 w-full sm:w-auto md:w-40">Explore</PillLink>
-    </FadeIn>
+    </div>
 </section>

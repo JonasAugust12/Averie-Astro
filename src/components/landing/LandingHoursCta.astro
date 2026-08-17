@@ -1,7 +1,6 @@
 ---
 import { bookingUrl, SEO } from '@/lib/site';
 import { landingImages } from '@/lib/landing-images';
-import FadeIn from '@/components/landing/FadeIn.astro';
 import PillLink from '@/components/landing/PillLink.astro';
 import LandingImage from '@/components/landing/LandingImage.astro';
 import {
@@ -16,9 +15,22 @@ import {
 
 <section
     id="hours"
-    class="relative grid gap-6 py-12 md:grid-cols-12 md:items-stretch md:py-24"
+    class="relative isolate grid gap-6 py-12 md:grid-cols-12 md:items-stretch md:py-24"
     aria-labelledby="hours-cta-title"
 >
+    <!-- Decorative bubbles (halo behind Schedule marble card & CTA Booking action) -->
+    <div class="pointer-events-none absolute inset-0 -z-10 overflow-visible">
+        <div
+            class="absolute top-12 left-0 h-64 w-64 rounded-full bg-primary01/35 blur-3xl animate-ambient-pulse sm:left-6 md:left-10 sm:h-72 sm:w-72"
+            style="animation-delay: 2s;"
+        >
+        </div>
+        <div
+            class="absolute -bottom-8 right-0 h-72 w-72 rounded-full bg-primary02/35 blur-3xl animate-ambient-pulse sm:right-6 md:right-12 sm:h-80 sm:w-80"
+            style="animation-delay: 4.5s;"
+        >
+        </div>
+    </div>
     <div
         class:list={[
             'absolute bottom-0 z-0 aspect-3/4 w-56 translate-y-1/2 md:w-72',
@@ -50,7 +62,7 @@ import {
         />
     </div>
 
-    <FadeIn
+    <div
         class="relative z-10 flex flex-col justify-center overflow-hidden rounded-4xl border border-stone-200/80 px-6 py-10 text-center shadow-[0_16px_36px_-10px_rgba(58,48,39,0.08)] md:col-span-4 md:rounded-card md:px-8"
     >
         <LandingImage
@@ -134,10 +146,9 @@ import {
                 Online booking closes one hour before our closing time.
             </p>
         </div>
-    </FadeIn>
+    </div>
 
-    <FadeIn
-        delay={0.1}
+    <div
         class="relative z-10 flex flex-col items-center justify-center rounded-4xl border border-stone-200/80 bg-white/95 px-6 py-10 text-center shadow-[0_16px_36px_-10px_rgba(58,48,39,0.08)] sm:py-12 md:col-span-8 md:rounded-card"
     >
         <h2 id="hours-cta-title" class={landingTitle}>Your next appointment starts here</h2>
@@ -232,5 +243,5 @@ import {
                 >
             </a>
         </div>
-    </FadeIn>
+    </div>
 </section>

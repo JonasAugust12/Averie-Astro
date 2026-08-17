@@ -9,6 +9,8 @@
   Primary #2B2623 · Secondary #D4C5B9 · Tertiary #F5EFEA · Neutral #FDFCFB
 */
 @theme {
+    --color-primary01: #5f87c1;
+    --color-primary02: #fd735d;
     --color-primary: #2b2623;
     --color-primary-50: #f7f6f5;
     --color-primary-100: #ebe8e6;
@@ -127,19 +129,40 @@ h4 {
     }
 }
 
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-        opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
-    transition-delay: var(--fade-delay, 0s);
-    will-change: opacity, transform;
+@keyframes ambientPulse {
+    0%,
+    100% {
+        transform: scale(0.8) translate(0, 0);
+        opacity: 0.35;
+    }
+    50% {
+        transform: scale(1.35) translate(22px, -16px);
+        opacity: 1;
+    }
 }
 
-.fade-in-section.is-revealed {
-    opacity: 1;
-    transform: translateY(0);
+.animate-ambient-pulse {
+    animation: ambientPulse 3s ease-in-out infinite;
+}
+
+.animation-delay-1000 {
+    animation-delay: 1s;
+}
+
+.animation-delay-1500 {
+    animation-delay: 1.5s;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-2500 {
+    animation-delay: 2.5s;
+}
+
+.animation-delay-3000 {
+    animation-delay: 3s;
 }
 
 .animate-landing-fade-in-up {
@@ -152,8 +175,6 @@ h4 {
         scroll-behavior: auto;
     }
 
-    .fade-in-section,
-    .fade-in-section.is-revealed,
     .animate-fade-in-up,
     .animate-fade-in,
     .animate-scale-in,
@@ -161,7 +182,6 @@ h4 {
     .animate-slow-zoom,
     .animate-landing-fade-in-up {
         animation: none !important;
-        transition: none !important;
         opacity: 1 !important;
         transform: none !important;
     }
