@@ -27,7 +27,11 @@ const localBusiness = {
         longitude: geo.longitude,
     },
     areaServed: [
-        { '@type': 'City', name: 'Cohasset', containedInPlace: { '@type': 'State', name: 'Massachusetts' } },
+        {
+            '@type': 'City',
+            name: 'Cohasset',
+            containedInPlace: { '@type': 'State', name: 'Massachusetts' },
+        },
         { '@type': 'Place', name: 'South Shore, Massachusetts' },
     ],
     openingHoursSpecification: [

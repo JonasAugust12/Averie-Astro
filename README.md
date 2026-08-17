@@ -15,17 +15,17 @@ pnpm preview
 
 Copy `.env.example` to `.env` and set your production values:
 
-| Variable | Description | Default |
-| -------- | ----------- | ------- |
-| `PUBLIC_SITE_URL` | Production site URL (canonical, OG, sitemap, robots) | `https://averie.com` |
-| `PUBLIC_BOOKING_URL` | Next.js booking app URL | `/book` |
+| Variable             | Description                                          | Default              |
+| -------------------- | ---------------------------------------------------- | -------------------- |
+| `PUBLIC_SITE_URL`    | Production site URL (canonical, OG, sitemap, robots) | `https://averie.com` |
+| `PUBLIC_BOOKING_URL` | Next.js booking app URL                              | `/book`              |
 
 ## Assets you need to add
 
-| File | Size | Purpose |
-| ---- | ---- | ------- |
-| `public/og.jpg` | **1200 × 630 px** | Facebook/Zalo/iMessage link preview + JSON-LD |
-| `public/icons/icon.png` | 512 × 512 px (recommended) | Favicon + Apple Touch Icon |
+| File                    | Size                       | Purpose                                       |
+| ----------------------- | -------------------------- | --------------------------------------------- |
+| `public/og.jpg`         | **1200 × 630 px**          | Facebook/Zalo/iMessage link preview + JSON-LD |
+| `public/icons/icon.png` | 512 × 512 px (recommended) | Favicon + Apple Touch Icon                    |
 
 Existing salon photos in `public/salon/` are already used on the page.
 

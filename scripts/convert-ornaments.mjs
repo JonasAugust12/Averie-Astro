@@ -4,10 +4,26 @@ import sharp from 'sharp';
 mkdirSync('src/assets/landing/ornaments', { recursive: true });
 
 const jobs = [
-    { in: 'public/salon/figma/hero01.svg', out: 'src/assets/landing/ornaments/hero01.webp', width: 450 },
-    { in: 'public/salon/figma/hero02.svg', out: 'src/assets/landing/ornaments/hero02.webp', width: 450 },
-    { in: 'public/salon/figma/hero03.svg', out: 'src/assets/landing/ornaments/hero03.webp', width: 350 },
-    { in: 'public/salon/figma/logo.svg', out: 'src/assets/landing/ornaments/logo.webp', width: 314 },
+    {
+        in: 'public/salon/figma/hero01.svg',
+        out: 'src/assets/landing/ornaments/hero01.webp',
+        width: 450,
+    },
+    {
+        in: 'public/salon/figma/hero02.svg',
+        out: 'src/assets/landing/ornaments/hero02.webp',
+        width: 450,
+    },
+    {
+        in: 'public/salon/figma/hero03.svg',
+        out: 'src/assets/landing/ornaments/hero03.webp',
+        width: 350,
+    },
+    {
+        in: 'public/salon/figma/logo.svg',
+        out: 'src/assets/landing/ornaments/logo.webp',
+        width: 314,
+    },
     { in: 'public/icons/usaflag.svg', out: 'src/assets/landing/ornaments/usaflag.webp', width: 44 },
 ];
 

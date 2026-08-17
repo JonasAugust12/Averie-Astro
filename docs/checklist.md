@@ -43,8 +43,8 @@ Dùng cho: canonical, OG URL, sitemap, JSON-LD, `robots.txt`.
 
 ### 2. Ảnh Open Graph
 
-| File | Kích thước | Trạng thái |
-| ---- | ---------- | ---------- |
+| File            | Kích thước        | Trạng thái |
+| --------------- | ----------------- | ---------- |
 | `public/og.jpg` | **1200 × 630 px** | ❌ Chưa có |
 
 Dùng cho: Facebook, Zalo, iMessage preview + JSON-LD `image`.
@@ -82,8 +82,8 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 ### 6. Favicon
 
-| File | Ghi chú |
-| ---- | ------- |
+| File                    | Ghi chú                                          |
+| ----------------------- | ------------------------------------------------ |
 | `public/icons/icon.png` | ~512×512 khuyến nghị; file hiện có vẫn dùng được |
 
 - [ ] (Tuỳ chọn) Thay favicon chất lượng cao hơn
@@ -116,14 +116,14 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 ## Tham chiếu nhanh
 
-| Biến môi trường | Mục đích |
-| --------------- | -------- |
-| `PUBLIC_SITE_URL` | Canonical, OG, sitemap, robots, JSON-LD |
-| `PUBLIC_BOOKING_URL` | Nút Book Now → app Next.js |
-| `PUBLIC_GA_ID` | (Tuỳ chọn) Google Analytics |
+| Biến môi trường      | Mục đích                                |
+| -------------------- | --------------------------------------- |
+| `PUBLIC_SITE_URL`    | Canonical, OG, sitemap, robots, JSON-LD |
+| `PUBLIC_BOOKING_URL` | Nút Book Now → app Next.js              |
+| `PUBLIC_GA_ID`       | (Tuỳ chọn) Google Analytics             |
 
-| Lệnh | |
-| ---- | -- |
-| `pnpm dev` | Local preview |
-| `pnpm build` | Build static → `dist/` |
-| `pnpm preview` | Preview bản build |
+| Lệnh           |                        |
+| -------------- | ---------------------- |
+| `pnpm dev`     | Local preview          |
+| `pnpm build`   | Build static → `dist/` |
+| `pnpm preview` | Preview bản build      |
