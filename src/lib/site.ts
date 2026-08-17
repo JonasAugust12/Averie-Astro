@@ -6,7 +6,7 @@ export const SITE_URL = (
 export const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? '/book';
 
 export const SEO = {
-    title: 'Averie — Nails • Facials • Beauty',
+    title: 'Averie - Nails • Facials • Beauty',
     description:
         'Refined nail care, gel, enhancements, and facials in Cohasset, MA. Book your Averie appointment online.',
     ogImage: '/og.jpg',
