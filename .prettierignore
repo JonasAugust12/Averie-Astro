@@ -26,3 +26,7 @@ dist
 
 # Lockfiles
 pnpm-lock.yaml
+
+# Files without a Prettier parser
+.npmrc
+.node-version
