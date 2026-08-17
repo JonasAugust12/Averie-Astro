@@ -3,6 +3,7 @@ import { bookingUrl } from '@/lib/site';
 import { landingImages } from '@/lib/landing-images';
 import PillLink from '@/components/landing/PillLink.astro';
 import LandingImage from '@/components/landing/LandingImage.astro';
+import FadeIn from '@/components/landing/FadeIn.astro';
 import {
     landingBody,
     landingDesktopOnly,
@@ -27,7 +28,7 @@ import {
         </div>
     </div>
     <div class="relative z-10 grid items-center gap-8 md:grid-cols-12 md:gap-8">
-        <div
+        <FadeIn
             class="flex flex-col items-center text-center md:col-span-5 md:items-start md:text-left"
         >
             <div class={landingEyebrow}>
@@ -99,9 +100,9 @@ import {
                 <span class="text-stone-400">•</span>
                 <span>Cohasset, MA</span>
             </div>
-        </div>
+        </FadeIn>
 
-        <div class="md:col-span-7">
+        <FadeIn delay={0.12} class="md:col-span-7">
             <div class={`relative mx-auto w-full max-w-sm ${landingMobileOnly}`}>
                 <div
                     class="absolute -inset-2 -z-10 rounded-[2.5rem] bg-linear-to-tr from-nude/25 via-secondary/20 to-cream/50 blur-xl"
@@ -174,6 +175,6 @@ import {
                     />
                 </div>
             </div>
-        </div>
+        </FadeIn>
     </div>
 </section>

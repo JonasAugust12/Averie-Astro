@@ -30,8 +30,14 @@ const { title, description, canonical } = Astro.props;
         </div>
         <script>
             import { initLandingNav } from '@/scripts/landing-nav';
+            import { initLandingFade } from '@/scripts/landing-fade';
+
             initLandingNav();
-            document.addEventListener('astro:page-load', () => initLandingNav());
+            initLandingFade();
+            document.addEventListener('astro:page-load', () => {
+                initLandingNav();
+                initLandingFade();
+            });
         </script>
     </body>
 </html>
