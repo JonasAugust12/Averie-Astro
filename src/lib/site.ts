@@ -1,4 +1,6 @@
-export const SITE_URL = import.meta.env.PUBLIC_SITE_URL ?? 'https://averie.com';
+export const SITE_URL = (
+    import.meta.env.SITE || 'https://averie-astro-b8u0xzu0x-jonasaugust12.vercel.app'
+).replace(/\/$/, '');
 
 /** Next.js app URL for booking flows */
 export const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? '/book';
