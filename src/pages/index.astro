@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LandingHeader from '@/components/landing/LandingHeader.astro';
+import LandingHero from '@/components/landing/LandingHero.astro';
+import LandingPhilosophy from '@/components/landing/LandingPhilosophy.astro';
+import LandingServices from '@/components/landing/LandingServices.astro';
+import LandingTestimonials from '@/components/landing/LandingTestimonials.astro';
+import LandingHoursCta from '@/components/landing/LandingHoursCta.astro';
+import LandingFooter from '@/components/landing/LandingFooter.astro';
+import { SEO } from '@/lib/site';
+---
+
+<BaseLayout title={SEO.title} description={SEO.description} canonical="/">
+    <LandingHeader />
+    <main id="main-content">
+        <LandingHero />
+        <LandingPhilosophy />
+        <LandingServices />
+        <LandingTestimonials />
+        <LandingHoursCta />
+    </main>
+    <LandingFooter />
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+/** Small public SVG icons only (under Astro audit threshold). */
+import { cn } from '@/lib/cn';
+import { landingImage } from '@/lib/styles';
+
+interface Props {
+    src: string;
+    class?: string;
+    width?: number;
+    height?: number;
+}
+
+const { src, class: className = '', width = 450, height = 750 } = Astro.props;
+---
+
+<img
+    src={src}
+    alt=""
+    aria-hidden="true"
+    width={width}
+    height={height}
+    draggable="false"
+    class={cn(landingImage, className)}
+    loading="lazy"
+    decoding="async"
+/>

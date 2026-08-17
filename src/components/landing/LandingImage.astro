@@ -1,0 +1,47 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { cn } from '@/lib/cn';
+import { landingImage } from '@/lib/styles';
+
+interface Props {
+    src: ImageMetadata;
+    alt: string;
+    width: number;
+    height: number;
+    class?: string;
+    /** LCP-critical: eager load + fetchpriority high */
+    priority?: boolean;
+    /** Visible in first viewport: eager load, normal fetch priority */
+    aboveFold?: boolean;
+    fit?: 'cover' | 'contain' | 'fill' | 'inside' | 'outside';
+}
+
+const {
+    src,
+    alt,
+    width,
+    height,
+    class: className = '',
+    priority = false,
+    aboveFold = false,
+    fit = 'inside',
+} = Astro.props;
+
+const loading = priority || aboveFold ? 'eager' : 'lazy';
+---
+
+<Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    fit={fit}
+    widths={[width, width * 2]}
+    sizes={`${width}px`}
+    class={cn(landingImage, className)}
+    loading={loading}
+    fetchpriority={priority ? 'high' : 'auto'}
+    decoding="async"
+    draggable="false"
+/>

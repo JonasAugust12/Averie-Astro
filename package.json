@@ -1,0 +1,43 @@
+{
+    "name": "averie-astro",
+    "type": "module",
+    "version": "0.0.1",
+    "private": true,
+    "engines": {
+        "node": ">=22.12.0"
+    },
+    "packageManager": "pnpm@10.33.0",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "lint": "eslint .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "type-check": "tsc --noEmit"
+    },
+    "dependencies": {
+        "@astrojs/sitemap": "^3.7.0",
+        "@tailwindcss/vite": "^4.1.11",
+        "astro": "^7.2.2",
+        "clsx": "^2.1.1",
+        "@fontsource/montserrat": "^5.2.6",
+        "sharp": "^0.34.3",
+        "tailwind-merge": "^3.3.1",
+        "tailwindcss": "^4.1.11"
+    },
+    "devDependencies": {
+        "@astrojs/check": "^0.9.6",
+        "@commitlint/cli": "^20.2.0",
+        "@commitlint/config-conventional": "^20.2.0",
+        "@typescript-eslint/parser": "^8.46.0",
+        "eslint": "^9",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-astro": "^1.5.0",
+        "prettier": "^3.7.4",
+        "prettier-plugin-astro": "^0.14.1",
+        "typescript": "^5",
+        "typescript-eslint": "^8.46.0"
+    }
+}

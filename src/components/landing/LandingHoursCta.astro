@@ -1,0 +1,226 @@
+---
+import { bookingUrl, SEO } from '@/lib/site';
+import { landingImages } from '@/lib/landing-images';
+import FadeIn from '@/components/landing/FadeIn.astro';
+import PillLink from '@/components/landing/PillLink.astro';
+import LandingImage from '@/components/landing/LandingImage.astro';
+import {
+    landingBleedRight,
+    landingBody,
+    landingInteractive,
+    landingOrnamentDesktopOnly,
+    landingStaticText,
+    landingTitle,
+} from '@/lib/styles';
+---
+
+<section id="hours" class="relative grid gap-6 py-12 md:grid-cols-12 md:items-stretch md:py-24" aria-labelledby="hours-cta-title">
+    <div
+        class:list={[
+            'absolute bottom-0 z-0 aspect-3/4 w-56 translate-y-1/2 md:w-72',
+            landingBleedRight,
+            landingOrnamentDesktopOnly,
+        ]}
+    >
+        <LandingImage
+            src={landingImages.heroOrnament01}
+            alt=""
+            width={450}
+            height={462}
+            class="h-full w-full object-cover"
+        />
+    </div>
+    <div
+        class:list={[
+            'absolute bottom-12 z-0 aspect-3/4 w-48 translate-y-1/2 md:w-56',
+            landingBleedRight,
+            landingOrnamentDesktopOnly,
+        ]}
+    >
+        <LandingImage
+            src={landingImages.heroOrnament03}
+            alt=""
+            width={350}
+            height={345}
+            class="h-full w-full object-cover"
+        />
+    </div>
+
+    <FadeIn
+        class="relative z-10 flex flex-col justify-center overflow-hidden rounded-4xl border border-stone-200/80 px-6 py-10 text-center shadow-[0_16px_36px_-10px_rgba(58,48,39,0.08)] md:col-span-4 md:rounded-card md:px-8"
+    >
+        <LandingImage
+            src={landingImages.hoursMarble}
+            alt="Marble texture background behind Averie salon hours"
+            width={400}
+            height={500}
+            class="absolute inset-0 h-full w-full object-cover"
+        />
+        <div class={`relative z-10 flex flex-col ${landingStaticText}`}>
+            <h2
+                id="hours-schedule-title"
+                class="font-display text-xl font-semibold uppercase tracking-wider text-secondary-600"
+            >
+                Schedule
+            </h2>
+            <div class="mx-auto mt-4 h-px w-full bg-secondary-600/30"></div>
+            <dl class="mt-6 flex flex-col gap-5">
+                <div>
+                    <dt
+                        class="font-sans text-xs font-normal uppercase tracking-wider text-secondary-600/80 sm:text-sm"
+                    >
+                        Mon–Fri
+                    </dt>
+                    <dd class="mt-1 font-sans text-base font-semibold text-secondary-600 sm:text-lg">
+                        9:00 AM – 7:00 PM
+                    </dd>
+                </div>
+                <div class="flex items-center gap-3" aria-hidden="true">
+                    <span class="h-px flex-1 bg-secondary-600/30"></span>
+                    <svg
+                        viewBox="0 0 12 12"
+                        class="size-2.5 shrink-0 text-nude/80"
+                        fill="currentColor"
+                        ><path d="M6 0 7.15 4.85 12 6 7.15 7.15 6 12 4.85 7.15 0 6 4.85 4.85Z"
+                        ></path></svg
+                    >
+                    <span class="h-px flex-1 bg-secondary-600/30"></span>
+                </div>
+                <div>
+                    <dt
+                        class="font-sans text-xs font-normal uppercase tracking-wider text-secondary-600/80 sm:text-sm"
+                    >
+                        Saturday
+                    </dt>
+                    <dd class="mt-1 font-sans text-base font-semibold text-secondary-600 sm:text-lg">
+                        9:00 AM – 6:00 PM
+                    </dd>
+                </div>
+                <div class="flex items-center gap-3" aria-hidden="true">
+                    <span class="h-px flex-1 bg-secondary-600/30"></span>
+                    <svg
+                        viewBox="0 0 12 12"
+                        class="size-2.5 shrink-0 text-nude/80"
+                        fill="currentColor"
+                        ><path d="M6 0 7.15 4.85 12 6 7.15 7.15 6 12 4.85 7.15 0 6 4.85 4.85Z"
+                        ></path></svg
+                    >
+                    <span class="h-px flex-1 bg-secondary-600/30"></span>
+                </div>
+                <div>
+                    <dt
+                        class="font-sans text-xs font-normal uppercase tracking-wider text-secondary-600/80 sm:text-sm"
+                    >
+                        Sunday
+                    </dt>
+                    <dd class="mt-1 font-sans text-base font-semibold text-secondary-600 sm:text-lg">
+                        10:00 AM – 5:00 PM
+                    </dd>
+                </div>
+            </dl>
+            <p
+                class="mt-5 font-sans text-xs italic leading-relaxed text-secondary-600/75 sm:text-sm"
+            >
+                Online booking closes one hour before our closing time.
+            </p>
+        </div>
+    </FadeIn>
+
+    <FadeIn
+        delay={0.1}
+        class="relative z-10 flex flex-col items-center justify-center rounded-4xl border border-stone-200/80 bg-white/95 px-6 py-10 text-center shadow-[0_16px_36px_-10px_rgba(58,48,39,0.08)] sm:py-12 md:col-span-8 md:rounded-card"
+    >
+        <h2 id="hours-cta-title" class={landingTitle}>Your next appointment starts here</h2>
+        <p class={`mt-4 max-w-lg ${landingBody}`}>
+            Gift certificates available. Appointments and walk-ins welcome.
+        </p>
+
+        <div class="mt-8 flex w-full flex-col items-center gap-3 lg:flex-row lg:justify-center">
+            <PillLink
+                href={bookingUrl()}
+                class="flex items-center justify-center gap-2 lg:max-w-none"
+            >
+                <svg
+                    class="size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><path d="M8 2v4"></path><path d="M16 2v4"></path><rect
+                        width="18"
+                        height="18"
+                        x="3"
+                        y="4"
+                        rx="2"></rect><path d="M3 10h18"></path></svg
+                >
+                <span>Book now</span>
+            </PillLink>
+            <PillLink
+                href={`tel:${SEO.phone}`}
+                variant="outline"
+                class="flex items-center justify-center gap-2 lg:max-w-none"
+            >
+                <svg
+                    class="size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                    ></path></svg
+                >
+                <span>Call: {SEO.phoneDisplay}</span>
+            </PillLink>
+        </div>
+
+        <div class="mt-7 flex items-center justify-center border-t border-stone-200/70 pt-6">
+            <a
+                href={SEO.maps}
+                target="_blank"
+                rel="noopener noreferrer"
+                class={`group flex items-center gap-2.5 text-sm text-stone-500 transition-colors hover:text-stone-800 ${landingInteractive}`}
+            >
+                <svg
+                    class="size-4 shrink-0 text-stone-400 transition-colors group-hover:text-stone-700"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><path
+                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"
+                    ></path><circle cx="12" cy="10" r="3"></circle></svg
+                >
+                <span
+                    class="underline decoration-stone-300 underline-offset-4 group-hover:decoration-stone-500"
+                    >132 Chief Justice Cushing Hwy, Cohasset, MA 02025</span
+                >
+                <svg
+                    class="size-3.5 text-stone-400 opacity-70 transition-opacity group-hover:opacity-100"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                    ><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path
+                        d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg
+                >
+            </a>
+        </div>
+    </FadeIn>
+</section>

@@ -1,0 +1,129 @@
+---
+import { SEO } from '@/lib/site';
+import { landingImages } from '@/lib/landing-images';
+import LandingImage from '@/components/landing/LandingImage.astro';
+import DecorativeImage from '@/components/landing/DecorativeImage.astro';
+import {
+    landingBleedSecondary600,
+    landingBleedWhite,
+    landingInteractive,
+    landingStaticText,
+} from '@/lib/styles';
+---
+
+<footer class:list={['border-t border-border/40 py-12 pb-0', landingBleedWhite]} aria-labelledby="footer-contact-title">
+    <div class="grid gap-10 md:grid-cols-12 md:gap-10">
+        <div
+            class="flex flex-col items-center text-center md:col-span-4 md:items-start md:text-left"
+        >
+            <div
+                class={`relative flex size-42 items-center justify-center overflow-hidden rounded-full p-3 md:aspect-square md:w-3/4 md:p-8 md:size-auto ${landingStaticText}`}
+            >
+                <LandingImage
+                    src={landingImages.logoRound}
+                    alt="Averie"
+                    width={160}
+                    height={160}
+                    class="rounded-full object-contain"
+                />
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col items-center text-center md:col-span-4 md:items-start md:text-left"
+        >
+            <p
+                id="footer-contact-title"
+                class={`mb-4 flex w-full items-center justify-center gap-2 border-b border-stone-200/60 pb-2 font-sans text-sm font-bold tracking-wide text-nude md:justify-start md:text-[17px] ${landingStaticText}`}
+            >
+                Contact
+            </p>
+            <address class="flex flex-col items-center gap-3 not-italic md:items-start">
+                <a
+                    href={`tel:${SEO.phone}`}
+                    class="font-sans text-lg font-bold text-stone-850 transition-colors hover:text-nude md:text-[19px]"
+                >
+                    781-923-1955
+                </a>
+                <div class="flex flex-col text-center md:text-left">
+                    <p
+                        class="font-sans text-base font-bold leading-tight text-stone-855 md:text-[17px]"
+                    >
+                        132 Chief Justice Cushing Hwy
+                    </p>
+                    <p
+                        class="mt-0.5 font-sans text-sm font-semibold text-stone-500 md:mt-1 md:text-base"
+                    >
+                        Cohasset, MA 02025
+                    </p>
+                </div>
+            </address>
+
+            <div class="mt-5 flex justify-center gap-4 md:mt-6 md:justify-start">
+                <a
+                    href={SEO.social.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={`group flex size-14 items-center justify-center rounded-2xl bg-linear-to-b from-white to-cream/60 p-2.5 shadow-[0_4px_16px_rgba(192,149,127,0.18)] ring-1 ring-stone-200/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(192,149,127,0.28)] hover:ring-nude/35 active:scale-95 md:size-16 md:rounded-[18px] md:p-3 ${landingInteractive}`}
+                    aria-label="Instagram"
+                >
+                    <DecorativeImage
+                        src="/icons/instagram.svg"
+                        width={40}
+                        height={40}
+                        class="size-9 transition-transform duration-300 group-hover:scale-110 md:size-10"
+                    />
+                </a>
+                <a
+                    href={SEO.social.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class={`group flex size-14 items-center justify-center rounded-2xl bg-linear-to-b from-white to-cream/60 p-2.5 shadow-[0_4px_16px_rgba(192,149,127,0.18)] ring-1 ring-stone-200/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_10px_28px_rgba(192,149,127,0.28)] hover:ring-nude/35 active:scale-95 md:size-16 md:rounded-[18px] md:p-3 ${landingInteractive}`}
+                    aria-label="Facebook"
+                >
+                    <DecorativeImage
+                        src="/icons/facebook.svg"
+                        width={40}
+                        height={40}
+                        class="size-9 transition-transform duration-300 group-hover:scale-110 md:size-10"
+                    />
+                </a>
+            </div>
+        </div>
+
+        <div
+            class="flex flex-col items-center text-center md:col-span-4 md:items-start md:text-left"
+        >
+            <p
+                class={`mb-4 flex w-full items-center justify-center gap-2 border-b border-stone-200/60 pb-2 font-sans text-sm font-bold tracking-wide text-nude md:justify-start md:text-[17px] ${landingStaticText}`}
+            >
+                Our Location
+            </p>
+            <div
+                class="aspect-4/3 w-full overflow-hidden rounded-2xl border border-border/40 bg-cream/10 shadow-xs md:rounded-lg"
+            >
+                <iframe
+                    title="Averie salon location on Google Maps"
+                    src="https://maps.google.com/maps?q=Averie%20Nails%20Spa%20Cohasset%20MA&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                    width="100%"
+                    height="100%"
+                    style="border: 0"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div
+        class:list={[
+            'relative mt-10 flex flex-col items-center py-6 text-center',
+            landingBleedSecondary600,
+        ]}
+    >
+        <p
+            class={`relative z-10 px-4 font-sans text-xs text-cream/90 md:px-0 md:text-sm ${landingStaticText}`}
+        >
+            Copyright © 2026 Averie. All rights reserved.
+        </p>
+    </div>
+</footer>

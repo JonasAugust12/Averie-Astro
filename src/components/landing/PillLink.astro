@@ -1,0 +1,32 @@
+---
+import { cn } from '@/lib/cn';
+import { landingInteractive } from '@/lib/styles';
+
+export interface Props {
+    href: string;
+    variant?: 'solid' | 'outline';
+    class?: string;
+    external?: boolean;
+}
+
+const { href, variant = 'solid', class: className = '', external = false } = Astro.props;
+
+const isExternal = external || /^(https?:|mailto:|tel:|sms:)/i.test(href);
+---
+
+<a
+    href={href}
+    class={cn(
+        landingInteractive,
+        'inline-flex h-12.5 w-full max-w-sm items-center justify-center rounded-full px-8 font-sans text-sm font-medium uppercase tracking-wide transition-all duration-300 hover:-translate-y-0.5 md:w-auto md:min-w-64 md:max-w-none',
+        variant === 'solid'
+            ? 'bg-third text-cream hover:bg-primary-800'
+            : 'border border-third bg-transparent text-third hover:bg-third hover:text-cream',
+        className,
+    )}
+    {...isExternal && /^https?:/i.test(href)
+        ? { target: '_blank', rel: 'noopener noreferrer' }
+        : {}}
+>
+    <slot />
+</a>

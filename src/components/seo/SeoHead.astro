@@ -1,0 +1,70 @@
+---
+import { getImage } from 'astro:assets';
+import { SEO, absoluteUrl } from '@/lib/site';
+import { hero } from '@/lib/landing-images';
+
+export interface Props {
+    title?: string;
+    description?: string;
+    canonical?: string;
+    ogImage?: string;
+    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+    title = SEO.title,
+    description = SEO.description,
+    canonical = '/',
+    ogImage = SEO.ogImage,
+    jsonLd,
+} = Astro.props;
+
+const canonicalUrl = absoluteUrl(canonical);
+const imageUrl = absoluteUrl(ogImage);
+const heroPreload = await getImage({ src: hero, width: 800, format: 'webp' });
+---
+
+<!-- Primary Meta -->
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta
+    name="robots"
+    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+/>
+<link rel="canonical" href={canonicalUrl} />
+<meta name="theme-color" content="#f8f7f3" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Averie Salon" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content={imageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta
+    property="og:image:alt"
+    content="Averie Luxury Salon — Nails, Facials & Beauty in Cohasset, MA"
+/>
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+<meta
+    name="twitter:image:alt"
+    content="Averie Luxury Salon — Nails, Facials & Beauty in Cohasset, MA"
+/>
+
+<!-- Icons & LCP -->
+<link rel="icon" type="image/png" href="/icons/icon.png" />
+<link rel="apple-touch-icon" href="/icons/icon.png" />
+<link rel="preload" as="image" href={heroPreload.src} type="image/webp" fetchpriority="high" />
+
+{jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

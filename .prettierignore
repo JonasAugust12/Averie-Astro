@@ -1,0 +1,28 @@
+# Dependencies
+node_modules
+
+# Build outputs
+.next
+out
+build
+dist
+.astro
+
+# Environment files
+.env*.local
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+
+# IDE
+.vscode
+.idea
+
+# Git
+.git
+
+# Lockfiles
+pnpm-lock.yaml

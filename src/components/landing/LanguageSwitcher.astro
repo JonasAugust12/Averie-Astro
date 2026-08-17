@@ -1,0 +1,46 @@
+---
+import { landingImages } from '@/lib/landing-images';
+import LandingImage from '@/components/landing/LandingImage.astro';
+import { landingInteractive } from '@/lib/styles';
+---
+
+<!-- Visual-only language indicator (English) — matches Next.js pill variant -->
+<button
+    type="button"
+    class={`group relative flex size-10 cursor-default select-none items-center justify-center overflow-hidden rounded-full border border-stone-200/80 bg-white/85 shadow-2xs md:h-9.5 md:w-auto md:gap-2 md:border-third/60 md:px-3.5 lg:h-10.5 lg:px-4.5 ${landingInteractive}`}
+    aria-label="English"
+    tabindex="-1"
+>
+    <svg
+        class="hidden size-3.5 text-third md:block"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+    >
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+        <path d="M2 12h20"></path>
+    </svg>
+
+    <div class="relative h-3.5 w-5.5 shrink-0 overflow-hidden rounded-xs shadow-xs">
+        <LandingImage
+            src={landingImages.usaFlag}
+            alt=""
+            width={44}
+            height={29}
+            aboveFold
+            class="pointer-events-none h-full w-full select-none object-cover [-webkit-user-drag:none]"
+        />
+    </div>
+
+    <span
+        class="hidden font-sans text-xs font-semibold uppercase tracking-wider text-third md:block"
+    >
+        ENG
+    </span>
+</button>
