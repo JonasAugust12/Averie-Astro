@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import promotionData from '@/data/promotion.json';
 import { cn } from '@/lib/cn';
 import { landingBody, landingEyebrow, landingTitle, landingStaticText } from '@/lib/styles';
@@ -299,10 +300,14 @@ const ctaLink = promotion.ctaLink || '/#hours';
                                 style={{ aspectRatio, maxHeight: '560px' }}
                             >
                                 {promotion.imageUrl ? (
-                                    <img
+                                    <Image
                                         src={promotion.imageUrl}
                                         alt={promotion.title}
-                                        loading="lazy"
+                                        width={promotion.imageWidth || 800}
+                                        height={promotion.imageHeight || 1000}
+                                        format="webp"
+                                        loading="eager"
+                                        fetchpriority="high"
                                         decoding="async"
                                         draggable="false"
                                         class="h-full w-full object-contain pointer-events-none select-none [-webkit-user-drag:none]"
