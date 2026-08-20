@@ -6,9 +6,11 @@ export const SITE_URL = (
 export const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? '/book';
 
 export const SEO = {
-    title: 'Averie - Nails • Facials • Beauty',
+    title: 'Averie | Luxury Nail Salon & Facials in Cohasset, MA',
     description:
-        'Refined nail care, gel, enhancements, and facials in Cohasset, MA. Book your Averie appointment online.',
+        'Top-rated nail salon & beauty spa in Cohasset, MA. Premium manicures, pedicures, gel nails, Dermalogica facials & waxing. Book your Averie appointment online.',
+    keywords:
+        'nail salon Cohasset MA, nails Cohasset Massachusetts, nail spa Cohasset, manicure pedicure Cohasset MA, Dermalogica facials Cohasset, beauty salon Cohasset MA, South Shore nail salon',
     ogImage: '/og.jpg',
     phone: '+17819231955',
     phoneDisplay: '781-923-1955',

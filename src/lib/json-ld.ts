@@ -32,8 +32,24 @@ const localBusiness = {
             name: 'Cohasset',
             containedInPlace: { '@type': 'State', name: 'Massachusetts' },
         },
+        {
+            '@type': 'City',
+            name: 'Scituate',
+            containedInPlace: { '@type': 'State', name: 'Massachusetts' },
+        },
+        {
+            '@type': 'City',
+            name: 'Hingham',
+            containedInPlace: { '@type': 'State', name: 'Massachusetts' },
+        },
+        {
+            '@type': 'City',
+            name: 'Norwell',
+            containedInPlace: { '@type': 'State', name: 'Massachusetts' },
+        },
         { '@type': 'Place', name: 'South Shore, Massachusetts' },
     ],
+    keywords: SEO.keywords,
     openingHoursSpecification: [
         {
             '@type': 'OpeningHoursSpecification',

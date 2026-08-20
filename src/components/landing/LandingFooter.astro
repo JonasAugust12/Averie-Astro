@@ -103,17 +103,48 @@ import {
                 Our Location
             </p>
             <div
+                id="footer-map-container"
                 class="aspect-4/3 w-full overflow-hidden rounded-2xl border border-border/40 bg-cream/10 shadow-xs md:rounded-lg"
             >
                 <iframe
+                    id="footer-map-iframe"
                     title="Averie salon location on Google Maps"
-                    src="https://maps.google.com/maps?q=Averie%20Nails%20Spa%20Cohasset%20MA&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                    data-src="https://maps.google.com/maps?q=Averie%20Nails%20Spa%20Cohasset%20MA&t=&z=17&ie=UTF8&iwloc=&output=embed"
                     width="100%"
                     height="100%"
                     style="border: 0"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
+            <script is:inline>
+                (function () {
+                    var mapContainer = document.getElementById('footer-map-container');
+                    var mapIframe = document.getElementById('footer-map-iframe');
+                    if (!mapContainer || !mapIframe) return;
+
+                    function loadMap() {
+                        if (mapIframe.dataset.src) {
+                            mapIframe.src = mapIframe.dataset.src;
+                            delete mapIframe.dataset.src;
+                        }
+                    }
+
+                    if ('IntersectionObserver' in window) {
+                        var observer = new IntersectionObserver(
+                            function (entries) {
+                                if (entries[0].isIntersecting) {
+                                    loadMap();
+                                    observer.disconnect();
+                                }
+                            },
+                            { rootMargin: '200px' },
+                        );
+                        observer.observe(mapContainer);
+                    } else {
+                        loadMap();
+                    }
+                })();
+            </script>
         </div>
     </div>
 
