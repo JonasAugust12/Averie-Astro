@@ -41,7 +41,7 @@ export default defineConfig({
         remotePatterns: [{ protocol: 'https', hostname: 'res.cloudinary.com' }],
     },
     build: {
-        inlineStylesheets: 'auto',
+        inlineStylesheets: 'always',
     },
     integrations: [
         sitemap({
