@@ -118,8 +118,8 @@ import {
             </div>
             <script is:inline>
                 (function () {
-                    var mapContainer = document.getElementById('footer-map-container');
-                    var mapIframe = document.getElementById('footer-map-iframe');
+                    const mapContainer = document.getElementById('footer-map-container');
+                    const mapIframe = document.getElementById('footer-map-iframe');
                     if (!mapContainer || !mapIframe) return;
 
                     function loadMap() {
@@ -130,7 +130,7 @@ import {
                     }
 
                     if ('IntersectionObserver' in window) {
-                        var observer = new IntersectionObserver(
+                        const observer = new IntersectionObserver(
                             function (entries) {
                                 if (entries[0].isIntersecting) {
                                     loadMap();
