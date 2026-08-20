@@ -36,6 +36,10 @@ export default defineConfig({
     site,
     output: 'static',
     compressHTML: true,
+    image: {
+        domains: ['res.cloudinary.com'],
+        remotePatterns: [{ protocol: 'https', hostname: 'res.cloudinary.com' }],
+    },
     build: {
         inlineStylesheets: 'auto',
     },

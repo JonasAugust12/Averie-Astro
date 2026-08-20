@@ -46,7 +46,7 @@ const cards: Array<{
 
 <section id="services" class="relative isolate py-12 md:py-24" aria-labelledby="services-title">
     <!-- Decorative bubbles (subtle, moderate size) -->
-    <div class="pointer-events-none absolute inset-0 -z-10 overflow-visible">
+    <div class="pointer-events-none absolute inset-0 -z-10 overflow-visible md:hidden">
         <div
             class="absolute top-10 right-4 h-60 w-60 rounded-full bg-primary02/35 blur-3xl animate-ambient-pulse md:right-16"
             style="animation-delay: 2s;"
@@ -85,6 +85,7 @@ const cards: Array<{
                                 height={255}
                                 class="h-full w-full object-cover"
                             />
+                            <div class="pointer-events-none absolute inset-0 -translate-x-full animate-shine bg-gradient-to-r from-transparent via-white/35 to-transparent z-10" />
                             <div
                                 class={`absolute top-3 left-3 rounded-full border border-white/80 bg-white/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-third shadow-xs backdrop-blur-md ${landingStaticText}`}
                             >
@@ -146,6 +147,7 @@ const cards: Array<{
                                 height={300}
                                 class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                             />
+                            <div class="pointer-events-none absolute inset-0 -translate-x-full animate-shine bg-gradient-to-r from-transparent via-white/35 to-transparent z-10" />
                             <div
                                 class={`absolute top-3.5 left-3.5 rounded-full border border-white/80 bg-white/90 px-3.5 py-1 text-xs font-semibold uppercase tracking-wider text-third shadow-xs backdrop-blur-md ${landingStaticText}`}
                             >

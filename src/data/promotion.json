@@ -1,0 +1,13 @@
+{
+    "enabled": true,
+    "title": "Special August Offer",
+    "description": "Experience premium beauty services with exclusive seasonal promotion tailored for you at Averie Beauty Salon.",
+    "imageUrl": "https://res.cloudinary.com/dpndyuheh/image/upload/v1787212532/Averie/promotion/wycwmpa75oowe6ne5yxb.png",
+    "imageWidth": 800,
+    "imageHeight": 1000,
+    "color": "#fd735d",
+    "startDate": "2026-08-01",
+    "endDate": "2026-08-31",
+    "ctaText": "Book Appointment",
+    "ctaLink": "https://averie.salon/book"
+}

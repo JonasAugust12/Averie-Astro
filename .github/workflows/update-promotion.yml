@@ -1,0 +1,163 @@
+name: Update Promotion Settings
+
+on:
+    workflow_dispatch:
+        inputs:
+            title:
+                description: 'Promotion Title (Leave blank to keep current)'
+                required: false
+                default: ''
+            description:
+                description: 'Promotion Description (Leave blank to keep current)'
+                required: false
+                default: ''
+            image_url:
+                description: 'Cloudinary Image URL (Leave blank to keep current)'
+                required: false
+                default: ''
+            image_width:
+                description: 'Image Width (px) (Leave blank to keep current)'
+                required: false
+                default: ''
+            image_height:
+                description: 'Image Height (px) (Leave blank to keep current)'
+                required: false
+                default: ''
+            color:
+                type: choice
+                description: 'Theme Color (Select Hex Code from list)'
+                required: false
+                default: '#fd735d'
+                options:
+                    - '#fd735d'
+                    - '#c0957f'
+                    - '#b91c1c'
+                    - '#dc2626'
+                    - '#ef4444'
+                    - '#f43f5e'
+                    - '#e11d48'
+                    - '#be123c'
+                    - '#9f1239'
+                    - '#db2777'
+                    - '#ec4899'
+                    - '#f472b6'
+                    - '#d946ef'
+                    - '#c084fc'
+                    - '#a855f7'
+                    - '#8b5cf6'
+                    - '#7c3aed'
+                    - '#6366f1'
+                    - '#4f46e5'
+                    - '#3b82f6'
+                    - '#2563eb'
+                    - '#1d4ed8'
+                    - '#0ea5e9'
+                    - '#06b6d4'
+                    - '#0891b2'
+                    - '#0d9488'
+                    - '#10b981'
+                    - '#059669'
+                    - '#16a34a'
+                    - '#65a30d'
+                    - '#84cc16'
+                    - '#eab308'
+                    - '#f59e0b'
+                    - '#d97706'
+                    - '#ea580c'
+                    - '#78716c'
+            custom_color:
+                description: 'Custom Theme Color Hex (Overrides dropdown if filled, e.g. #ff0055)'
+                required: false
+                default: ''
+            start_date:
+                description: 'Start Date YYYY-MM-DD (Leave blank to keep current)'
+                required: false
+                default: ''
+            end_date:
+                description: 'End Date YYYY-MM-DD (Leave blank to keep current)'
+                required: false
+                default: ''
+            cta_text:
+                description: 'CTA Button Text (Leave blank to keep current)'
+                required: false
+                default: ''
+            cta_link:
+                description: 'CTA Link (Leave blank to keep current)'
+                required: false
+                default: ''
+            enabled:
+                type: choice
+                description: 'Enable Promotion Section'
+                required: false
+                default: 'true'
+                options:
+                    - 'true'
+                    - 'false'
+
+permissions:
+    contents: write
+
+jobs:
+    update-promotion:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Update promotion.json
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const fs = require('fs');
+                      const path = 'src/data/promotion.json';
+
+                      let currentData = {};
+                      if (fs.existsSync(path)) {
+                          try {
+                              currentData = JSON.parse(fs.readFileSync(path, 'utf8'));
+                          } catch (e) {
+                              console.error('Error reading existing promotion.json:', e);
+                          }
+                      }
+
+                      const inputTitle = ${{ toJson(inputs.title) }};
+                      const inputDescription = ${{ toJson(inputs.description) }};
+                      const inputImageUrl = ${{ toJson(inputs.image_url) }};
+                      const inputImageWidth = "${{ inputs.image_width }}";
+                      const inputImageHeight = "${{ inputs.image_height }}";
+                      const inputColorChoice = ${{ toJson(inputs.color) }};
+                      const inputCustomColor = ${{ toJson(inputs.custom_color) }};
+                      const inputStartDate = ${{ toJson(inputs.start_date) }};
+                      const inputEndDate = ${{ toJson(inputs.end_date) }};
+                      const inputCtaText = ${{ toJson(inputs.cta_text) }};
+                      const inputCtaLink = ${{ toJson(inputs.cta_link) }};
+                      const inputEnabled = ${{ toJson(inputs.enabled) }};
+
+                      const finalColor = (inputCustomColor && inputCustomColor.trim() !== '')
+                          ? inputCustomColor.trim()
+                          : (inputColorChoice && inputColorChoice.trim() !== '' ? inputColorChoice : (currentData.color || '#fd735d'));
+
+                      const newData = {
+                          enabled: inputEnabled !== '' ? (inputEnabled === 'true') : (currentData.enabled ?? true),
+                          title: (inputTitle && inputTitle.trim() !== '') ? inputTitle : (currentData.title || ''),
+                          description: (inputDescription && inputDescription.trim() !== '') ? inputDescription : (currentData.description || ''),
+                          imageUrl: (inputImageUrl && inputImageUrl.trim() !== '') ? inputImageUrl : (currentData.imageUrl || ''),
+                          imageWidth: inputImageWidth ? Number(inputImageWidth) : (currentData.imageWidth || 800),
+                          imageHeight: inputImageHeight ? Number(inputImageHeight) : (currentData.imageHeight || 1000),
+                          color: finalColor,
+                          startDate: (inputStartDate && inputStartDate.trim() !== '') ? inputStartDate : (currentData.startDate || ''),
+                          endDate: (inputEndDate && inputEndDate.trim() !== '') ? inputEndDate : (currentData.endDate || ''),
+                          ctaText: (inputCtaText && inputCtaText.trim() !== '') ? inputCtaText : (currentData.ctaText || 'Book Appointment'),
+                          ctaLink: (inputCtaLink && inputCtaLink.trim() !== '') ? inputCtaLink : (currentData.ctaLink || '/#hours')
+                      };
+
+                      fs.writeFileSync(path, JSON.stringify(newData, null, 4));
+                      console.log('Successfully updated src/data/promotion.json:', JSON.stringify(newData, null, 2));
+
+            - name: Commit and push changes
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git add src/data/promotion.json
+                  git commit -m "chore(promotion): update promotion details via GitHub Action [skip ci]" || echo "No changes to commit"
+                  git push origin main
