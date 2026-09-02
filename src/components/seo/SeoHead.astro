@@ -65,8 +65,9 @@ const heroPreload = await getImage({ src: hero, width: 500, format: 'webp' });
 />
 
 <!-- Icons & LCP -->
-<link rel="icon" type="image/png" href="/icons/icon.png" />
-<link rel="apple-touch-icon" href="/icons/icon.png" />
+<link rel="icon" href="/favicon.ico" sizes="48x48" />
+<link rel="icon" type="image/png" href="/icons/logo_round.png" sizes="512x512" />
+<link rel="apple-touch-icon" href="/icons/logo_round.png" />
 <link rel="preload" as="image" href={heroPreload.src} type="image/webp" fetchpriority="high" />
 
 {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
