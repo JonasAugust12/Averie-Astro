@@ -1,6 +1,6 @@
 import { SEO, absoluteUrl, bookingUrl } from '@/lib/site';
 
-const { address, geo, phoneDisplay, social, description } = SEO;
+const { address, geo, phone, social, description, maps } = SEO;
 
 const localBusiness = {
     '@context': 'https://schema.org',
@@ -9,9 +9,10 @@ const localBusiness = {
     name: 'Averie',
     description,
     url: absoluteUrl('/'),
-    telephone: phoneDisplay,
-    image: absoluteUrl('/og.jpg'),
-    logo: absoluteUrl('/icons/logo_round.png'),
+    telephone: phone,
+    image: absoluteUrl(SEO.ogImage),
+    logo: absoluteUrl(SEO.logo),
+    hasMap: maps,
     priceRange: '$$',
     address: {
         '@type': 'PostalAddress',

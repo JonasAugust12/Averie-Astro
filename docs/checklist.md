@@ -9,21 +9,22 @@ Landing page Astro tại `F:\Averie-Astro`. Static HTML, English-only.
 - [x] Meta: `title`, `description`, `canonical`, `robots`
 - [x] Open Graph + Twitter Card
 - [x] JSON-LD: `BeautySalon`, `WebSite`, `areaServed` (Cohasset + South Shore)
+- [x] JSON-LD: `telephone` E.164 (`+17819231955`), `hasMap`, `logo` → `/icons/logo.png`
+- [x] Google Search Console: meta verify + `public/google990ff0b977e8aa15.html`
 - [x] `robots.txt` động theo `PUBLIC_SITE_URL` (`src/pages/robots.txt.ts`)
 - [x] Sitemap tự sinh (`/sitemap-index.xml` via `@astrojs/sitemap`)
 - [x] Semantic HTML: `main`, `h1`, `address`, `dl`, `blockquote`, `aria-labelledby`
 - [x] Alt text ảnh nội dung; ảnh trang trí `aria-hidden`
 - [x] Skip link, `theme-color`, `apple-touch-icon`
-- [x] Preload hero LCP (`/salon/figma/hero.png`)
+- [x] Preload hero LCP (webp via Astro assets)
 - [x] Self-host Montserrat (`@fontsource/montserrat`)
-- [x] Xóa section Find Appointment
-- [x] Xóa link Privacy / Terms ở footer
+- [x] `public/icons/logo.png` cho JSON-LD logo
 
 ---
 
-## Cần làm — ưu tiên cao
+## Cần bạn làm — ưu tiên cao
 
-Ảnh hưởng ranking / index trực tiếp.
+Ảnh hưởng ranking / index trực tiếp; không fix được trong code.
 
 ### 1. Domain production
 
@@ -36,23 +37,21 @@ PUBLIC_BOOKING_URL=https://app.domain.com/book
 
 Dùng cho: canonical, OG URL, sitemap, JSON-LD, `robots.txt`.
 
-**Default hiện tại:** `https://averie.com` — phải đổi trước khi deploy.
-
-- [ ] Set `PUBLIC_SITE_URL` đúng domain live
+- [ ] Set `PUBLIC_SITE_URL` đúng domain live (không dùng Vercel preview URL)
 - [ ] Set `PUBLIC_BOOKING_URL` trỏ app Next.js (booking)
 
-### 2. Ảnh Open Graph
+### 2. Ảnh Open Graph — **cần thay file**
 
-| File            | Kích thước        | Trạng thái |
-| --------------- | ----------------- | ---------- |
-| `public/og.jpg` | **1200 × 630 px** | ❌ Chưa có |
+| File            | Kích thước yêu cầu | Trạng thái hiện tại                                  |
+| --------------- | ------------------ | ---------------------------------------------------- |
+| `public/og.jpg` | **1200 × 630 px**  | ⚠️ Có file nhưng **157×50** (logo banner, sai tỷ lệ) |
 
-Dùng cho: Facebook, Zalo, iMessage preview + JSON-LD `image`.
+Meta OG/Twitter đang khai 1200×630 — cần file thật khớp kích thước.
 
 Gợi ý nội dung: ảnh salon đẹp + logo Averie + tagline; text nằm vùng an toàn giữa ảnh.
 
-- [ ] Tạo và đặt `public/og.jpg` (1200×630)
-- [ ] Test share link sau deploy (Facebook Debugger / Zalo)
+- [ ] Thay `public/og.jpg` bằng bản **1200×630**
+- [ ] Test share link sau deploy ([Facebook Debugger](https://developers.facebook.com/tools/debug/) / Zalo)
 
 ### 3. Google Business Profile
 
@@ -60,21 +59,22 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 - [ ] Claim salon trên [Google Business Profile](https://business.google.com)
 - [ ] Verify địa chỉ: 132 Chief Justice Cushing Hwy, Cohasset, MA 02025
-- [ ] Khớp tên, giờ mở cửa, SĐT (`781-923-1955`) với website
+- [ ] Khớp tên, giờ mở cửa, SĐT (`781-923-1955`) với website + JSON-LD
 - [ ] Thêm link website sau khi deploy
 
 ### 4. Google Search Console
 
 - [ ] Add property (domain hoặc URL prefix)
-- [ ] Verify ownership
+- [ ] Verify ownership (meta + HTML file đã sẵn trong code)
 - [ ] Submit sitemap: `https://<domain-của-bạn>/sitemap-index.xml`
 - [ ] Kiểm tra URL Inspection cho `/`
 
-### 5. Deploy
+### 5. Deploy & tránh duplicate với Next.js
 
 - [ ] `pnpm build` thành công trên CI/hosting
 - [ ] HTTPS bật (bắt buộc cho Search Console)
-- [ ] Kiểm tra live: `/`, `/robots.txt`, `/sitemap-index.xml`
+- [ ] Kiểm tra live: `/`, `/robots.txt`, `/sitemap-index.xml`, `/icons/logo.png`
+- [ ] Chọn **một domain chính** — Astro marketing **hoặc** Next.js landing; site còn lại redirect/canonical
 
 ---
 
@@ -82,9 +82,9 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 ### 6. Favicon
 
-| File                    | Ghi chú                                          |
-| ----------------------- | ------------------------------------------------ |
-| `public/icons/icon.png` | ~512×512 khuyến nghị; file hiện có vẫn dùng được |
+| File                    | Ghi chú                            |
+| ----------------------- | ---------------------------------- |
+| `public/icons/icon.png` | 500×500 — dùng được; 512×512 ideal |
 
 - [ ] (Tuỳ chọn) Thay favicon chất lượng cao hơn
 
@@ -109,7 +109,6 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 - hreflang / đa ngôn ngữ
 - Trang `/privacy`, `/terms`
-- Meta keywords
 - Thêm trang duplicate content
 
 ---
