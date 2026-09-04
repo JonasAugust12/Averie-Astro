@@ -188,7 +188,7 @@ const filters: FilterOption[] = [
                                     'price-filter-btn group inline-flex items-center gap-2 rounded-full border px-4 py-2 font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer select-none active:scale-95 min-h-11 touch-manipulation',
                                     index === 0
                                         ? 'bg-primary text-cream border-primary shadow-xs'
-                                        : 'bg-white/80 text-secondary-700 border-stone-200/80 hover:border-nude/40 hover:bg-stone-50/90 hover:text-secondary-900',
+                                        : 'bg-tertiary-100/90 text-secondary-800 border-stone-200/90 hover:border-nude/40 hover:bg-cream hover:text-secondary-900',
                                 ]}
                             >
                                 <span>{filter.label}</span>
@@ -197,7 +197,7 @@ const filters: FilterOption[] = [
                                         'inline-flex size-5 items-center justify-center rounded-full text-[10px] font-bold transition-colors',
                                         index === 0
                                             ? 'bg-white/20 text-cream'
-                                            : 'bg-stone-100 text-muted group-hover:bg-nude/15 group-hover:text-nude',
+                                            : 'bg-stone-200/60 text-muted group-hover:bg-nude/15 group-hover:text-nude',
                                     ]}
                                 >
                                     {filter.count}
@@ -226,10 +226,10 @@ const filters: FilterOption[] = [
                             data-filter-group={group}
                             data-category-id={category.id}
                             class:list={[
-                                'price-category-card relative flex h-full flex-col rounded-3xl border bg-white/95 p-5 shadow-[0_12px_32px_-8px_rgba(58,48,39,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(58,48,39,0.12)] hover:border-nude/40 lg:rounded-4xl lg:p-6 group',
+                                'price-category-card relative flex h-full flex-col rounded-3xl border p-5 shadow-[0_12px_32px_-8px_rgba(58,48,39,0.07)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_40px_-12px_rgba(58,48,39,0.12)] hover:border-nude/40 lg:rounded-4xl lg:p-6 group',
                                 isFeatured
-                                    ? 'border-nude/35 bg-linear-to-b from-white via-white to-secondary-50/30 shadow-[0_16px_36px_-8px_rgba(148,90,66,0.1)]'
-                                    : 'border-stone-200/80',
+                                    ? 'border-nude/40 bg-linear-to-b from-tertiary-100 via-cream to-secondary-100/60 shadow-[0_16px_36px_-8px_rgba(148,90,66,0.14)]'
+                                    : 'border-stone-200/90 bg-linear-to-b from-cream via-cream/90 to-tertiary-100/50',
                             ]}
                             style="transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);"
                         >
@@ -292,7 +292,7 @@ const filters: FilterOption[] = [
                             {/* Items List */}
                             <ul class="flex flex-1 flex-col gap-2.5" role="list">
                                 {category.items.map((item) => (
-                                    <li class="group/item flex flex-col rounded-xl px-2.5 py-2 -mx-2.5 transition-all duration-200 hover:bg-stone-100/80 hover:shadow-2xs active:bg-stone-100/90 active:scale-[0.99] touch-manipulation cursor-pointer">
+                                    <li class="group/item flex flex-col rounded-xl px-2.5 py-2 -mx-2.5 transition-all duration-200 hover:bg-tertiary-100/80 hover:shadow-2xs active:bg-tertiary-200/70 active:scale-[0.99] touch-manipulation cursor-pointer">
                                         <div class="flex items-baseline justify-between gap-2">
                                             <span
                                                 class={`shrink font-sans text-sm leading-snug font-semibold text-third group-hover/item:text-secondary-900 transition-colors sm:text-[15px] ${landingStaticText}`}
@@ -304,7 +304,7 @@ const filters: FilterOption[] = [
                                                 aria-hidden="true"
                                             />
                                             <span
-                                                class={`shrink-0 font-sans text-sm font-semibold tabular-nums text-nude bg-nude/8 px-2.5 py-0.5 rounded-lg border border-nude/12 group-hover/item:bg-nude group-hover/item:text-cream group-hover/item:border-nude transition-all duration-200 sm:text-[15px] ${landingStaticText}`}
+                                                class={`shrink-0 font-sans text-sm font-semibold tabular-nums text-nude bg-nude/10 px-2.5 py-0.5 rounded-lg border border-nude/15 group-hover/item:bg-nude group-hover/item:text-cream group-hover/item:border-nude transition-all duration-200 sm:text-[15px] ${landingStaticText}`}
                                             >
                                                 {item.price}
                                             </span>
@@ -324,7 +324,7 @@ const filters: FilterOption[] = [
 
                             {/* Category Footnote Note */}
                             {category.note && (
-                                <footer class="mt-4 flex items-start gap-2 rounded-2xl border border-nude/20 bg-nude/5 p-3 text-xs leading-relaxed text-secondary-800 italic">
+                                <footer class="mt-4 flex items-start gap-2 rounded-2xl border border-nude/25 bg-nude/8 p-3 text-xs leading-relaxed text-secondary-900 italic">
                                     <svg
                                         class="mt-0.5 size-3.5 shrink-0 text-nude"
                                         xmlns="http://www.w3.org/2000/svg"
