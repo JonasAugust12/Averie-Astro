@@ -1,6 +1,6 @@
 const SELECTOR = '[data-fade-in]';
-const PREPARE_CLASS = 'fade-prepare';
-const REVEALED_CLASS = 'is-revealed';
+const ANIMATION_CLASS = 'animate-landing-fade-in-up';
+const LEGACY_CLASSES = ['fade-prepare', 'is-revealed'] as const;
 
 const MOBILE_MQ = '(max-width: 767px)';
 
@@ -14,26 +14,23 @@ function isMobileViewport() {
     return window.matchMedia(MOBILE_MQ).matches;
 }
 
-function reveal(el: HTMLElement, isMobile: boolean) {
-    if (el.classList.contains(REVEALED_CLASS)) return;
-
-    el.classList.add(PREPARE_CLASS);
-
-    const delayMs = isMobile ? 0 : Number(el.dataset.fadeDelay ?? 0) * 1000;
-
-    const run = () => {
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                el.classList.add(REVEALED_CLASS);
-            });
-        });
-    };
-
-    if (delayMs > 0) {
-        setTimeout(run, delayMs);
-    } else {
-        run();
+function resetFadeState(el: HTMLElement) {
+    for (const legacyClass of LEGACY_CLASSES) {
+        el.classList.remove(legacyClass);
     }
+    el.classList.remove(ANIMATION_CLASS);
+    el.style.animationDelay = '';
+}
+
+function reveal(el: HTMLElement, isMobile: boolean) {
+    if (el.classList.contains(ANIMATION_CLASS)) return;
+
+    const delay = isMobile ? 0 : Number(el.dataset.fadeDelay ?? 0);
+    if (delay > 0) {
+        el.style.animationDelay = `${delay}s`;
+    }
+
+    el.classList.add(ANIMATION_CLASS);
 }
 
 /**
@@ -41,8 +38,8 @@ function reveal(el: HTMLElement, isMobile: boolean) {
  * and no-JS users still see full content.
  *
  * Above-the-fold nodes are left alone (no opacity flash / layout read).
- * Below-fold nodes reveal via CSS transitions — opacity-only on mobile for
- * a softer, luxury feel without scroll jank.
+ * Below-fold nodes animate when IntersectionObserver reports them.
+ * Mobile uses a softer opacity-only keyframe (see globals.css).
  */
 export function initLandingFade() {
     teardown?.();
@@ -56,38 +53,15 @@ export function initLandingFade() {
     const isMobile = isMobileViewport();
     const pending = new WeakSet<Element>();
 
+    for (const el of nodes) {
+        resetFadeState(el);
+    }
+
     const observer = new IntersectionObserver(
         (entries) => {
             for (const entry of entries) {
                 const el = entry.target as HTMLElement;
 
-                if (isMobile) {
-                    if (!entry.isIntersecting) {
-                        // Pre-hide while still off-screen so reveal never flashes
-                        if (
-                            !el.classList.contains(REVEALED_CLASS) &&
-                            entry.boundingClientRect.top > window.innerHeight
-                        ) {
-                            el.classList.add(PREPARE_CLASS);
-                        }
-                        continue;
-                    }
-
-                    // Skip hero / above-fold blocks visible on first paint
-                    if (!pending.has(el)) {
-                        pending.add(el);
-                        if (entry.boundingClientRect.top < window.innerHeight * 0.8) {
-                            observer.unobserve(el);
-                            continue;
-                        }
-                    }
-
-                    reveal(el, true);
-                    observer.unobserve(el);
-                    continue;
-                }
-
-                // Desktop: original above-fold guard
                 if (!pending.has(el)) {
                     pending.add(el);
                     if (entry.isIntersecting) {
@@ -97,13 +71,11 @@ export function initLandingFade() {
                 }
 
                 if (!entry.isIntersecting) continue;
-                reveal(el, false);
+                reveal(el, isMobile);
                 observer.unobserve(el);
             }
         },
-        isMobile
-            ? { threshold: 0, rootMargin: '0px 0px 60px 0px' }
-            : { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
+        { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
     );
 
     for (const el of nodes) {
