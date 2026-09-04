@@ -1,9 +1,9 @@
 export const SITE_URL = (
-    import.meta.env.SITE || 'https://averie-astro-b8u0xzu0x-jonasaugust12.vercel.app'
+    import.meta.env.SITE || 'https://www.averienails.com'
 ).replace(/\/$/, '');
 
-/** Next.js app URL for booking flows */
-export const BOOKING_URL = import.meta.env.PUBLIC_BOOKING_URL ?? '/book';
+/** External LLDTEK booking page */
+export const BOOKING_URL = 'https://www.lldtek.org/salon/appt/VFVGZk1USXpPVEk9';
 
 export const SEO = {
     title: 'Averie | Nail Salon & Facials in Cohasset, MA',
@@ -29,7 +29,7 @@ export const SEO = {
     },
     social: {
         instagram: 'https://www.instagram.com/averienailspa',
-        facebook: 'https://www.facebook.com/minh.vinh.14',
+        facebook: 'https://www.facebook.com/averiespa',
     },
     maps: 'https://maps.app.goo.gl/YCtZW533i3x6BB5QA',
 } as const;

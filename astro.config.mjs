@@ -29,7 +29,7 @@ const site =
     toAbsoluteSiteUrl(process.env.PUBLIC_SITE_URL) ??
     toAbsoluteSiteUrl(process.env.VERCEL_PROJECT_PRODUCTION_URL) ??
     toAbsoluteSiteUrl(process.env.VERCEL_URL) ??
-    'https://averie-astro-b8u0xzu0x-jonasaugust12.vercel.app';
+    'https://www.averienails.com';
 
 /** @type {import('astro').AstroUserConfig} */
 export default defineConfig({

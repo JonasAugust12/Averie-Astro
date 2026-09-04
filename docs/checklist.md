@@ -31,14 +31,12 @@ Landing page Astro tại `F:\Averie-Astro`. Static HTML, English-only.
 Tạo file `.env` (copy từ `.env.example`):
 
 ```env
-PUBLIC_SITE_URL=https://domain-thật-của-bạn.com
-PUBLIC_BOOKING_URL=https://app.domain.com/book
+PUBLIC_SITE_URL=https://www.averienails.com
 ```
 
 Dùng cho: canonical, OG URL, sitemap, JSON-LD, `robots.txt`.
 
-- [ ] Set `PUBLIC_SITE_URL` đúng domain live (không dùng Vercel preview URL)
-- [ ] Set `PUBLIC_BOOKING_URL` trỏ app Next.js (booking)
+- [ ] Set `PUBLIC_SITE_URL=https://www.averienails.com` trên Vercel (không dùng preview URL)
 
 ### 2. Ảnh Open Graph — **cần thay file**
 
@@ -66,7 +64,7 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 - [ ] Add property (domain hoặc URL prefix)
 - [ ] Verify ownership (meta + HTML file đã sẵn trong code)
-- [ ] Submit sitemap: `https://<domain-của-bạn>/sitemap-index.xml`
+- [ ] Submit sitemap: `https://www.averienails.com/sitemap-index.xml`
 - [ ] Kiểm tra URL Inspection cho `/`
 
 ### 5. Deploy & tránh duplicate với Next.js
@@ -117,9 +115,8 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 | Biến môi trường      | Mục đích                                |
 | -------------------- | --------------------------------------- |
-| `PUBLIC_SITE_URL`    | Canonical, OG, sitemap, robots, JSON-LD |
-| `PUBLIC_BOOKING_URL` | Nút Book Now → app Next.js              |
-| `PUBLIC_GA_ID`       | (Tuỳ chọn) Google Analytics             |
+| `PUBLIC_SITE_URL` | Canonical, OG, sitemap, robots, JSON-LD |
+| `PUBLIC_GA_ID`    | (Tuỳ chọn) Google Analytics             |
 
 | Lệnh           |                        |
 | -------------- | ---------------------- |

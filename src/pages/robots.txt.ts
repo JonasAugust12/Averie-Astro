@@ -2,7 +2,7 @@ import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = ({ site }) => {
     const origin = (
-        site?.origin ?? 'https://averie-astro-b8u0xzu0x-jonasaugust12.vercel.app'
+        site?.origin ?? 'https://www.averienails.com'
     ).replace(/\/$/, '');
     const body = ['User-agent: *', 'Allow: /', '', `Sitemap: ${origin}/sitemap-index.xml`].join(
         '\n',

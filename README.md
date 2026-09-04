@@ -17,8 +17,7 @@ Copy `.env.example` to `.env` and set your production values:
 
 | Variable             | Description                                          | Default              |
 | -------------------- | ---------------------------------------------------- | -------------------- |
-| `PUBLIC_SITE_URL`    | Production site URL (canonical, OG, sitemap, robots) | `https://averie.com` |
-| `PUBLIC_BOOKING_URL` | Next.js booking app URL                              | `/book`              |
+| `PUBLIC_SITE_URL` | Production site URL (canonical, OG, sitemap, robots) | `https://www.averienails.com` |
 
 ## Assets you need to add
 
@@ -45,10 +44,10 @@ Existing salon photos in `public/salon/` are already used on the page.
 
 ### You need to do (off-site / assets)
 
-1. Set `PUBLIC_SITE_URL` in `.env` to your real domain before deploy
+1. Set `PUBLIC_SITE_URL` in `.env` to `https://www.averienails.com` before deploy
 2. Add `public/og.jpg` at 1200×630 (salon photo + logo/text)
 3. [Google Business Profile](https://business.google.com) — claim & verify Averie on Maps
-4. [Google Search Console](https://search.google.com/search-console) — submit `https://your-domain.com/sitemap-index.xml`
+4. [Google Search Console](https://search.google.com/search-console) — submit `https://www.averienails.com/sitemap-index.xml`
 5. Optional: Bing Webmaster Tools, GA4 (`PUBLIC_GA_ID` in `.env.example`)
 
 ## Stack
