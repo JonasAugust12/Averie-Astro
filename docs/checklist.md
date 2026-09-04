@@ -35,15 +35,13 @@ Canonical, OG, sitemap, JSON-LD, `robots.txt` đã gắn cứng `https://www.ave
 
 ### 2. Ảnh Open Graph — **cần thay file**
 
-| File            | Kích thước yêu cầu | Trạng thái hiện tại                                  |
-| --------------- | ------------------ | ---------------------------------------------------- |
-| `public/og.jpg` | **1200 × 630 px**  | ⚠️ Có file nhưng **157×50** (logo banner, sai tỷ lệ) |
+| File            | Kích thước yêu cầu | Trạng thái hiện tại                       |
+| --------------- | ------------------ | ----------------------------------------- |
+| `public/og.jpg` | **1200 × 630 px**  | Ảnh nội thất salon (crop từ `salon.webp`) |
 
-Meta OG/Twitter đang khai 1200×630 — cần file thật khớp kích thước.
+Meta OG/Twitter khớp 1200×630.
 
-Gợi ý nội dung: ảnh salon đẹp + logo Averie + tagline; text nằm vùng an toàn giữa ảnh.
-
-- [ ] Thay `public/og.jpg` bằng bản **1200×630**
+- [x] `public/og.jpg` **1200×630**
 - [ ] Test share link sau deploy ([Facebook Debugger](https://developers.facebook.com/tools/debug/) / Zalo)
 
 ### 3. Google Business Profile
