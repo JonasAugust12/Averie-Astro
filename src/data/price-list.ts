@@ -163,12 +163,12 @@ export const priceCategories: PriceCategory[] = [
                 description: 'Complete pedicure with long-lasting gel polish finish.',
             },
             {
-                name: 'Gel Polish Change — Nails',
+                name: 'Gel Polish Change - Nails',
                 price: '$35',
                 description: 'Removal of old polish and fresh application of gel polish on nails.',
             },
             {
-                name: 'Gel Polish Change — Toes',
+                name: 'Gel Polish Change - Toes',
                 price: '$40',
                 description: 'Removal of old polish and fresh gel application on toes.',
             },
@@ -212,7 +212,7 @@ export const priceCategories: PriceCategory[] = [
                 description: 'Standalone gentle removal of gel or acrylic extensions.',
             },
             {
-                name: 'Paraffin Wax — Hands or Feet',
+                name: 'Paraffin Wax - Hands or Feet',
                 price: '$15',
                 description:
                     'Warm therapeutic paraffin dip for deep hydration and soothing warmth.',
@@ -249,12 +249,12 @@ export const priceCategories: PriceCategory[] = [
         subtitle: 'Durable · Custom Shape',
         icon: 'acrylic',
         items: [
-            { name: 'Traditional Acrylic — Fill', price: '$50' },
-            { name: 'Traditional Acrylic — Full Set', price: '$70' },
-            { name: 'Pink & White Solar — Fill', price: '$60' },
-            { name: 'Pink & White Solar — Full Set', price: '$70' },
-            { name: 'Gel Lacquer — Fill', price: '$50' },
-            { name: 'Gel Lacquer — Full Set', price: '$60' },
+            { name: 'Traditional Acrylic - Fill', price: '$50' },
+            { name: 'Traditional Acrylic - Full Set', price: '$70' },
+            { name: 'Pink & White Solar - Fill', price: '$60' },
+            { name: 'Pink & White Solar - Full Set', price: '$70' },
+            { name: 'Gel Lacquer - Fill', price: '$50' },
+            { name: 'Gel Lacquer - Full Set', price: '$60' },
         ],
     },
     {
@@ -271,7 +271,7 @@ export const priceCategories: PriceCategory[] = [
     },
     {
         id: 'builder',
-        title: 'Builder — Gel X',
+        title: 'Builder - Gel X',
         subtitle: 'Apres product',
         icon: 'builder',
         items: [

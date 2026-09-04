@@ -185,7 +185,7 @@ const filters: FilterOption[] = [
                                 aria-selected={index === 0 ? 'true' : 'false'}
                                 data-filter-target={filter.id}
                                 class:list={[
-                                    'price-filter-btn group inline-flex items-center gap-2 rounded-full border px-4 py-2 font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer select-none active:scale-95 min-h-10.5',
+                                    'price-filter-btn group inline-flex items-center gap-2 rounded-full border px-4 py-2 font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer select-none active:scale-95 min-h-11 touch-manipulation',
                                     index === 0
                                         ? 'bg-primary text-cream border-primary shadow-xs'
                                         : 'bg-white/80 text-secondary-700 border-stone-200/80 hover:border-nude/40 hover:bg-stone-50/90 hover:text-secondary-900',
@@ -292,7 +292,7 @@ const filters: FilterOption[] = [
                             {/* Items List */}
                             <ul class="flex flex-1 flex-col gap-2.5" role="list">
                                 {category.items.map((item) => (
-                                    <li class="group/item flex flex-col rounded-xl px-2.5 py-2 -mx-2.5 transition-all duration-200 hover:bg-stone-100/80 hover:shadow-2xs">
+                                    <li class="group/item flex flex-col rounded-xl px-2.5 py-2 -mx-2.5 transition-all duration-200 hover:bg-stone-100/80 hover:shadow-2xs active:bg-stone-100/90 active:scale-[0.99] touch-manipulation cursor-pointer">
                                         <div class="flex items-baseline justify-between gap-2">
                                             <span
                                                 class={`shrink font-sans text-sm leading-snug font-semibold text-third group-hover/item:text-secondary-900 transition-colors sm:text-[15px] ${landingStaticText}`}
