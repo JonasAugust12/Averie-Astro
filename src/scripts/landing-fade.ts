@@ -31,6 +31,17 @@ function reveal(el: HTMLElement, isMobile: boolean) {
     }
 
     el.classList.add(ANIMATION_CLASS);
+
+    // Free GPU hint after animation completes (mobile luxeReveal uses filter/transform)
+    if (isMobile) {
+        el.addEventListener(
+            'animationend',
+            () => {
+                el.style.willChange = 'auto';
+            },
+            { once: true },
+        );
+    }
 }
 
 /**
@@ -39,7 +50,7 @@ function reveal(el: HTMLElement, isMobile: boolean) {
  *
  * Above-the-fold nodes are left alone (no opacity flash / layout read).
  * Below-fold nodes animate when IntersectionObserver reports them.
- * Mobile uses a softer opacity-only keyframe (see globals.css).
+ * Mobile uses a luxury scale+blur keyframe (see globals.css `luxeReveal`).
  */
 export function initLandingFade() {
     teardown?.();
@@ -57,26 +68,29 @@ export function initLandingFade() {
         resetFadeState(el);
     }
 
-    const observer = new IntersectionObserver(
-        (entries) => {
-            for (const entry of entries) {
-                const el = entry.target as HTMLElement;
+    // Mobile: trigger earlier so the animation plays fully inside the viewport.
+    // Desktop: keep the subtle bottom-clip for a staggered "rising" feel.
+    const observerOptions: IntersectionObserverInit = isMobile
+        ? { threshold: 0.04, rootMargin: '0px 0px 0px 0px' }
+        : { threshold: 0.08, rootMargin: '0px 0px -8% 0px' };
 
-                if (!pending.has(el)) {
-                    pending.add(el);
-                    if (entry.isIntersecting) {
-                        observer.unobserve(el);
-                        continue;
-                    }
+    const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            const el = entry.target as HTMLElement;
+
+            if (!pending.has(el)) {
+                pending.add(el);
+                if (entry.isIntersecting) {
+                    observer.unobserve(el);
+                    continue;
                 }
-
-                if (!entry.isIntersecting) continue;
-                reveal(el, isMobile);
-                observer.unobserve(el);
             }
-        },
-        { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
-    );
+
+            if (!entry.isIntersecting) continue;
+            reveal(el, isMobile);
+            observer.unobserve(el);
+        }
+    }, observerOptions);
 
     for (const el of nodes) {
         observer.observe(el);
