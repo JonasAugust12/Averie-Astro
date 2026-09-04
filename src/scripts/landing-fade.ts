@@ -1,5 +1,8 @@
 const SELECTOR = '[data-fade-in]';
-const ANIMATION_CLASS = 'animate-landing-fade-in-up';
+const PREPARE_CLASS = 'fade-prepare';
+const REVEALED_CLASS = 'is-revealed';
+
+const MOBILE_MQ = '(max-width: 767px)';
 
 let teardown: (() => void) | null = null;
 
@@ -7,15 +10,30 @@ function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function reveal(el: HTMLElement) {
-    if (el.classList.contains(ANIMATION_CLASS)) return;
+function isMobileViewport() {
+    return window.matchMedia(MOBILE_MQ).matches;
+}
 
-    const delay = Number(el.dataset.fadeDelay ?? 0);
-    if (delay > 0) {
-        el.style.animationDelay = `${delay}s`;
+function reveal(el: HTMLElement, isMobile: boolean) {
+    if (el.classList.contains(REVEALED_CLASS)) return;
+
+    el.classList.add(PREPARE_CLASS);
+
+    const delayMs = isMobile ? 0 : Number(el.dataset.fadeDelay ?? 0) * 1000;
+
+    const run = () => {
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                el.classList.add(REVEALED_CLASS);
+            });
+        });
+    };
+
+    if (delayMs > 0) {
+        setTimeout(run, delayMs);
+    } else {
+        run();
     }
-
-    el.classList.add(ANIMATION_CLASS);
 }
 
 /**
@@ -23,8 +41,8 @@ function reveal(el: HTMLElement) {
  * and no-JS users still see full content.
  *
  * Above-the-fold nodes are left alone (no opacity flash / layout read).
- * Below-fold nodes animate when IntersectionObserver reports them — no
- * getBoundingClientRect, so we avoid forced reflow.
+ * Below-fold nodes reveal via CSS transitions — opacity-only on mobile for
+ * a softer, luxury feel without scroll jank.
  */
 export function initLandingFade() {
     teardown?.();
@@ -35,6 +53,7 @@ export function initLandingFade() {
     const nodes = [...document.querySelectorAll<HTMLElement>(SELECTOR)];
     if (!nodes.length) return;
 
+    const isMobile = isMobileViewport();
     const pending = new WeakSet<Element>();
 
     const observer = new IntersectionObserver(
@@ -42,6 +61,33 @@ export function initLandingFade() {
             for (const entry of entries) {
                 const el = entry.target as HTMLElement;
 
+                if (isMobile) {
+                    if (!entry.isIntersecting) {
+                        // Pre-hide while still off-screen so reveal never flashes
+                        if (
+                            !el.classList.contains(REVEALED_CLASS) &&
+                            entry.boundingClientRect.top > window.innerHeight
+                        ) {
+                            el.classList.add(PREPARE_CLASS);
+                        }
+                        continue;
+                    }
+
+                    // Skip hero / above-fold blocks visible on first paint
+                    if (!pending.has(el)) {
+                        pending.add(el);
+                        if (entry.boundingClientRect.top < window.innerHeight * 0.8) {
+                            observer.unobserve(el);
+                            continue;
+                        }
+                    }
+
+                    reveal(el, true);
+                    observer.unobserve(el);
+                    continue;
+                }
+
+                // Desktop: original above-fold guard
                 if (!pending.has(el)) {
                     pending.add(el);
                     if (entry.isIntersecting) {
@@ -51,11 +97,13 @@ export function initLandingFade() {
                 }
 
                 if (!entry.isIntersecting) continue;
-                reveal(el);
+                reveal(el, false);
                 observer.unobserve(el);
             }
         },
-        { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
+        isMobile
+            ? { threshold: 0, rootMargin: '0px 0px 60px 0px' }
+            : { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
     );
 
     for (const el of nodes) {

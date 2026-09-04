@@ -127,6 +127,42 @@ h4 {
     }
 }
 
+@keyframes fadeInSoft {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Scroll-triggered reveal — transition-based for smoother mobile performance */
+[data-fade-in].fade-prepare {
+    opacity: 0;
+    transform: translate3d(0, 20px, 0);
+    transition: none;
+}
+
+[data-fade-in].fade-prepare.is-revealed {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    transition:
+        opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mobile: gentle opacity-only reveal — slower, softer, no vertical shift */
+@media (max-width: 767px) {
+    [data-fade-in].fade-prepare {
+        transform: none;
+        will-change: opacity;
+    }
+
+    [data-fade-in].fade-prepare.is-revealed {
+        transition: opacity 1.75s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+}
+
 @keyframes marquee {
     from {
         transform: translateX(0);
@@ -269,6 +305,12 @@ h4 {
     animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@media (max-width: 767px) {
+    .animate-landing-fade-in-up {
+        animation: fadeInSoft 1.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -279,10 +321,12 @@ h4 {
     .animate-scale-in,
     .animate-ambient-pulse,
     .animate-slow-zoom,
-    .animate-landing-fade-in-up {
+    .animate-landing-fade-in-up,
+    [data-fade-in].fade-prepare {
         animation: none !important;
         opacity: 1 !important;
         transform: none !important;
+        transition: none !important;
     }
 }
 
