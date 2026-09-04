@@ -1,10 +1,8 @@
 import type { APIRoute } from 'astro';
+import { SITE_URL } from '@/lib/site';
 
-export const GET: APIRoute = ({ site }) => {
-    const origin = (
-        site?.origin ?? 'https://www.averienails.com'
-    ).replace(/\/$/, '');
-    const body = ['User-agent: *', 'Allow: /', '', `Sitemap: ${origin}/sitemap-index.xml`].join(
+export const GET: APIRoute = () => {
+    const body = ['User-agent: *', 'Allow: /', '', `Sitemap: ${SITE_URL}/sitemap-index.xml`].join(
         '\n',
     );
 

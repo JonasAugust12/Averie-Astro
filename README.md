@@ -13,11 +13,11 @@ pnpm preview
 
 ## Environment
 
-Copy `.env.example` to `.env` and set your production values:
+Canonical, OG, sitemap, and JSON-LD use the hardcoded site URL `https://www.averienails.com` (see `src/lib/site.ts`). Copy `.env.example` to `.env` only if you need optional analytics:
 
-| Variable             | Description                                          | Default              |
-| -------------------- | ---------------------------------------------------- | -------------------- |
-| `PUBLIC_SITE_URL` | Production site URL (canonical, OG, sitemap, robots) | `https://www.averienails.com` |
+| Variable       | Description               |
+| -------------- | ------------------------- |
+| `PUBLIC_GA_ID` | Optional Google Analytics |
 
 ## Assets you need to add
 
@@ -35,7 +35,7 @@ Existing salon photos in `public/salon/` are already used on the page.
 - Meta title, description, canonical, robots
 - Open Graph + Twitter Card
 - JSON-LD `BeautySalon` + `WebSite` + `areaServed`
-- Dynamic `robots.txt` (follows `PUBLIC_SITE_URL`)
+- Dynamic `robots.txt` (hardcoded `https://www.averienails.com`)
 - Auto sitemap (`/sitemap-index.xml`)
 - Self-hosted Montserrat (`@fontsource/montserrat`)
 - Hero LCP preload
@@ -44,11 +44,10 @@ Existing salon photos in `public/salon/` are already used on the page.
 
 ### You need to do (off-site / assets)
 
-1. Set `PUBLIC_SITE_URL` in `.env` to `https://www.averienails.com` before deploy
-2. Add `public/og.jpg` at 1200×630 (salon photo + logo/text)
-3. [Google Business Profile](https://business.google.com) — claim & verify Averie on Maps
-4. [Google Search Console](https://search.google.com/search-console) — submit `https://www.averienails.com/sitemap-index.xml`
-5. Optional: Bing Webmaster Tools, GA4 (`PUBLIC_GA_ID` in `.env.example`)
+1. Add `public/og.jpg` at 1200×630 (salon photo + logo/text)
+2. [Google Business Profile](https://business.google.com) — claim & verify Averie on Maps
+3. [Google Search Console](https://search.google.com/search-console) — submit `https://www.averienails.com/sitemap-index.xml`
+4. Optional: Bing Webmaster Tools, GA4 (`PUBLIC_GA_ID` in `.env.example`)
 
 ## Stack
 

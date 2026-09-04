@@ -1,6 +1,5 @@
-export const SITE_URL = (
-    import.meta.env.SITE || 'https://www.averienails.com'
-).replace(/\/$/, '');
+/** Production marketing site — hardcoded so deploy env cannot poison canonical/OG/sitemap. */
+export const SITE_URL = 'https://www.averienails.com';
 
 /** External LLDTEK booking page */
 export const BOOKING_URL = 'https://www.lldtek.org/salon/appt/VFVGZk1USXpPVEk9';

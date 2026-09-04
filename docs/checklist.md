@@ -11,7 +11,7 @@ Landing page Astro tại `F:\Averie-Astro`. Static HTML, English-only.
 - [x] JSON-LD: `BeautySalon`, `WebSite`, `areaServed` (Cohasset + South Shore)
 - [x] JSON-LD: `telephone` E.164 (`+17819231955`), `hasMap`, `logo` → `/icons/logo.png`
 - [x] Google Search Console: meta verify + `public/google990ff0b977e8aa15.html`
-- [x] `robots.txt` động theo `PUBLIC_SITE_URL` (`src/pages/robots.txt.ts`)
+- [x] `robots.txt` gắn cứng `https://www.averienails.com` (`src/pages/robots.txt.ts`)
 - [x] Sitemap tự sinh (`/sitemap-index.xml` via `@astrojs/sitemap`)
 - [x] Semantic HTML: `main`, `h1`, `address`, `dl`, `blockquote`, `aria-labelledby`
 - [x] Alt text ảnh nội dung; ảnh trang trí `aria-hidden`
@@ -28,15 +28,10 @@ Landing page Astro tại `F:\Averie-Astro`. Static HTML, English-only.
 
 ### 1. Domain production
 
-Tạo file `.env` (copy từ `.env.example`):
+Canonical, OG, sitemap, JSON-LD, `robots.txt` đã gắn cứng `https://www.averienails.com` trong code (`src/lib/site.ts`, `astro.config.mjs`). Không dùng `PUBLIC_SITE_URL`.
 
-```env
-PUBLIC_SITE_URL=https://www.averienails.com
-```
-
-Dùng cho: canonical, OG URL, sitemap, JSON-LD, `robots.txt`.
-
-- [ ] Set `PUBLIC_SITE_URL=https://www.averienails.com` trên Vercel (không dùng preview URL)
+- [ ] Redeploy để bản live hết canonical/sitemap trỏ `lldtek.org`
+- [ ] Xóa `PUBLIC_SITE_URL` trên Vercel nếu còn (tránh nhầm khi đọc env)
 
 ### 2. Ảnh Open Graph — **cần thay file**
 
@@ -113,10 +108,9 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 
 ## Tham chiếu nhanh
 
-| Biến môi trường      | Mục đích                                |
-| -------------------- | --------------------------------------- |
-| `PUBLIC_SITE_URL` | Canonical, OG, sitemap, robots, JSON-LD |
-| `PUBLIC_GA_ID`    | (Tuỳ chọn) Google Analytics             |
+| Biến môi trường | Mục đích                    |
+| --------------- | --------------------------- |
+| `PUBLIC_GA_ID`  | (Tuỳ chọn) Google Analytics |
 
 | Lệnh           |                        |
 | -------------- | ---------------------- |
