@@ -30,6 +30,9 @@ export const landingBleedWhite =
 export const landingBleedSecondary600 =
     "relative isolate before:pointer-events-none before:absolute before:inset-y-0 before:left-1/2 before:-z-10 before:w-screen before:-translate-x-1/2 before:bg-secondary-600 before:content-['']";
 
+export const landingBleedFooter =
+    "relative isolate before:pointer-events-none before:absolute before:inset-y-0 before:left-1/2 before:-z-10 before:w-screen before:-translate-x-1/2 before:bg-linear-to-b before:from-tertiary-100/90 before:via-cream before:to-secondary-100/60 before:border-t-2 before:border-nude/35 before:content-['']";
+
 export const landingBleedLeft = 'left-[calc(50%-50vw)] -translate-x-1/2';
 
 export const landingBleedRight = 'left-[calc(50%+50vw)] -translate-x-1/2';
