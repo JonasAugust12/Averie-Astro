@@ -1,5 +1,5 @@
 ---
-import promotionData from '@/data/promotion.json';
+import { isPromotionActive } from '@/lib/promotion';
 import { bookingUrl } from '@/lib/site';
 import { landingImages } from '@/lib/landing-images';
 import LanguageSwitcher from '@/components/landing/LanguageSwitcher.astro';
@@ -7,7 +7,7 @@ import LandingImage from '@/components/landing/LandingImage.astro';
 import { landingInteractive } from '@/lib/styles';
 
 const nav = [
-    ...(promotionData.enabled ? [{ href: '#promotion', label: 'Promotion' }] : []),
+    ...(isPromotionActive() ? [{ href: '#promotion', label: 'Promotion' }] : []),
     { href: '#philosophy', label: 'About' },
     { href: '#services', label: 'Service' },
     { href: '#hours', label: 'Contact' },

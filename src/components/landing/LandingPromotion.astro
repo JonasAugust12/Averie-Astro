@@ -1,40 +1,10 @@
 ---
 import { Image } from 'astro:assets';
-import promotionData from '@/data/promotion.json';
 import { cn } from '@/lib/cn';
+import { isPromotionActive, promotion } from '@/lib/promotion';
 import { landingBody, landingEyebrow, landingTitle, landingStaticText } from '@/lib/styles';
 
-interface PromotionConfig {
-    enabled: boolean;
-    title: string;
-    description: string;
-    imageUrl: string;
-    imageWidth?: number;
-    imageHeight?: number;
-    color: string;
-    startDate?: string;
-    endDate?: string;
-    ctaText?: string;
-    ctaLink?: string;
-}
-
-const promotion = promotionData as PromotionConfig;
-
-function isPromotionActive(promo: PromotionConfig): boolean {
-    if (!promo.enabled) return false;
-    const now = new Date();
-    if (promo.startDate) {
-        const start = new Date(promo.startDate);
-        if (now < start) return false;
-    }
-    if (promo.endDate) {
-        const end = new Date(promo.endDate);
-        if (now > end) return false;
-    }
-    return true;
-}
-
-const active = isPromotionActive(promotion);
+const active = isPromotionActive();
 
 function formatPromotionDate(dateStr: string): string {
     try {
