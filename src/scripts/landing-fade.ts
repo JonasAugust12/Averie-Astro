@@ -7,11 +7,6 @@ function prefersReducedMotion() {
     return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function isInView(el: HTMLElement) {
-    const rect = el.getBoundingClientRect();
-    return rect.top < window.innerHeight * 0.92 && rect.bottom > 0;
-}
-
 function reveal(el: HTMLElement) {
     if (el.classList.contains(ANIMATION_CLASS)) return;
 
@@ -25,7 +20,11 @@ function reveal(el: HTMLElement) {
 
 /**
  * Progressive-enhancement fade-in. Markup stays visible without JS so crawlers
- * and no-JS users still see full content. Animation is applied only after paint.
+ * and no-JS users still see full content.
+ *
+ * Above-the-fold nodes are left alone (no opacity flash / layout read).
+ * Below-fold nodes animate when IntersectionObserver reports them — no
+ * getBoundingClientRect, so we avoid forced reflow.
  */
 export function initLandingFade() {
     teardown?.();
@@ -36,42 +35,35 @@ export function initLandingFade() {
     const nodes = [...document.querySelectorAll<HTMLElement>(SELECTOR)];
     if (!nodes.length) return;
 
-    const pending = () => nodes.filter((el) => !el.classList.contains(ANIMATION_CLASS));
+    const pending = new WeakSet<Element>();
 
     const observer = new IntersectionObserver(
         (entries) => {
             for (const entry of entries) {
-                if (!entry.isIntersecting) continue;
-                reveal(entry.target as HTMLElement);
-                observer.unobserve(entry.target);
-            }
-            if (pending().length === 0) teardown?.();
-        },
-        { threshold: 0.08, rootMargin: '0px 0px 5% 0px' },
-    );
+                const el = entry.target as HTMLElement;
 
-    const checkVisibility = () => {
-        for (const el of pending()) {
-            if (!isInView(el)) continue;
-            reveal(el);
-            observer.unobserve(el);
-        }
-        if (pending().length === 0) teardown?.();
-    };
+                if (!pending.has(el)) {
+                    pending.add(el);
+                    if (entry.isIntersecting) {
+                        observer.unobserve(el);
+                        continue;
+                    }
+                }
+
+                if (!entry.isIntersecting) continue;
+                reveal(el);
+                observer.unobserve(el);
+            }
+        },
+        { threshold: 0.08, rootMargin: '0px 0px -8% 0px' },
+    );
 
     for (const el of nodes) {
         observer.observe(el);
     }
 
-    window.addEventListener('scroll', checkVisibility, { passive: true });
-    window.addEventListener('resize', checkVisibility, { passive: true });
-    const frame = window.requestAnimationFrame(checkVisibility);
-
     teardown = () => {
         observer.disconnect();
-        window.removeEventListener('scroll', checkVisibility);
-        window.removeEventListener('resize', checkVisibility);
-        window.cancelAnimationFrame(frame);
         teardown = null;
     };
 }

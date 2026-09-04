@@ -7,7 +7,7 @@ export const landingBody =
 export const landingStaticText = 'pointer-events-none select-none';
 
 export const landingEyebrow =
-    'inline-flex items-center gap-2 rounded-full border border-nude/30 bg-nude/10 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-nude pointer-events-none select-none';
+    'inline-flex items-center gap-2 rounded-full border border-nude/40 bg-white/90 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-third pointer-events-none select-none';
 
 export const landingEyebrowMuted =
     'inline-flex items-center gap-2 rounded-full border border-stone-300/60 bg-stone-100/60 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-muted pointer-events-none select-none';

@@ -2,6 +2,7 @@
 import { getImage } from 'astro:assets';
 import { SEO, absoluteUrl } from '@/lib/site';
 import { hero } from '@/lib/landing-images';
+import montserratSemiBold from '@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url';
 
 export interface Props {
     title?: string;
@@ -68,6 +69,7 @@ const heroPreload = await getImage({ src: hero, width: 500, format: 'webp' });
 <link rel="icon" href="/favicon.ico" sizes="48x48" />
 <link rel="icon" type="image/png" href="/icons/logo_round.png" sizes="512x512" />
 <link rel="apple-touch-icon" href="/icons/logo_round.png" />
+<link rel="preload" as="font" type="font/woff2" href={montserratSemiBold} crossorigin="anonymous" />
 <link rel="preload" as="image" href={heroPreload.src} type="image/webp" fetchpriority="high" />
 
 {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

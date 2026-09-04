@@ -6,7 +6,7 @@ import manicurePedicure from '@/assets/landing/manicure_pedicure.webp';
 import dermalogicaFacials from '@/assets/landing/dermalogica_facials.webp';
 import enhancementsWaxing from '@/assets/landing/enhancements_waxing.webp';
 import hoursMarble from '@/assets/landing/hours-marble.webp';
-import logoRound from '@/assets/landing/logo_round.webp';
+import logoRound from '@/assets/landing/logo_round.png';
 import heroOrnament01 from '@/assets/landing/ornaments/hero01.webp';
 import heroOrnament02 from '@/assets/landing/ornaments/hero02.webp';
 import heroOrnament03 from '@/assets/landing/ornaments/hero03.webp';
