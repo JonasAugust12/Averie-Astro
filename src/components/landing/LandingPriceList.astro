@@ -32,11 +32,13 @@ const getFilterGroup = (categoryId: string): FilterGroup => {
         case 'dessert':
         case 'me-time':
         case 'gentlemen':
+        case 'little-diva':
             return 'hands-feet';
         case 'gel-polish':
         case 'dip':
             return 'gel-dip';
         case 'acrylic':
+        case 'gel-x':
         case 'builder':
             return 'enhancements';
         case 'waxing':
@@ -61,10 +63,10 @@ const filterGroupsCount = priceCategories.reduce(
 const filters: FilterOption[] = [
     { id: 'all', label: 'All Menu', count: priceCategories.length },
     { id: 'hands-feet', label: 'Hands & Feet', count: filterGroupsCount['hands-feet'] || 0 },
+    { id: 'addons', label: 'Add-Ons', count: filterGroupsCount['addons'] || 0 },
     { id: 'gel-dip', label: 'Gel & Dip', count: filterGroupsCount['gel-dip'] || 0 },
     { id: 'enhancements', label: 'Enhancements', count: filterGroupsCount['enhancements'] || 0 },
     { id: 'skincare', label: 'Facials & Waxing', count: filterGroupsCount['skincare'] || 0 },
-    { id: 'addons', label: 'Add-Ons', count: filterGroupsCount['addons'] || 0 },
 ];
 ---
 
