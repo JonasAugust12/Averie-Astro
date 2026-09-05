@@ -421,12 +421,7 @@ const filters: FilterOption[] = [
 
                             {/* Card Header */}
                             <header class="relative z-10 mb-4 flex flex-col border-b border-nude/25 pb-4">
-                                <div
-                                    class:list={[
-                                        'flex items-start gap-3.5',
-                                        isFeatured && 'pr-24 sm:pr-12',
-                                    ]}
-                                >
+                                <div class="flex items-start gap-3.5">
                                     <div
                                         class:list={[
                                             'flex size-11 shrink-0 items-center justify-center rounded-2xl border transition-all duration-300 group-hover:scale-105 group-hover:bg-nude group-hover:text-cream group-hover:border-nude group-hover:shadow-md',
@@ -438,9 +433,12 @@ const filters: FilterOption[] = [
                                     >
                                         <PriceListIcon icon={category.icon} class="size-5" />
                                     </div>
-                                    <div class="min-w-0 text-left">
+                                    <div class="min-w-0 flex-1 text-left">
                                         <h3
-                                            class={`font-display text-lg font-semibold leading-tight text-secondary-900 group-hover:text-nude transition-colors sm:text-xl ${landingStaticText}`}
+                                            class:list={[
+                                                `font-display text-lg font-semibold leading-tight text-secondary-900 group-hover:text-nude transition-colors sm:text-xl ${landingStaticText}`,
+                                                isFeatured && 'pr-24 sm:pr-12',
+                                            ]}
                                         >
                                             {category.title}
                                         </h3>
