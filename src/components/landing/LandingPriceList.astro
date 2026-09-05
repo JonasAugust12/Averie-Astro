@@ -420,8 +420,13 @@ const filters: FilterOption[] = [
                             )}
 
                             {/* Card Header */}
-                            <header class="relative z-10 mb-4 flex flex-col border-b border-nude/25 pb-4 pr-24 sm:pr-12">
-                                <div class="flex items-start gap-3.5">
+                            <header class="relative z-10 mb-4 flex flex-col border-b border-nude/25 pb-4">
+                                <div
+                                    class:list={[
+                                        'flex items-start gap-3.5',
+                                        isFeatured && 'pr-24 sm:pr-12',
+                                    ]}
+                                >
                                     <div
                                         class:list={[
                                             'flex size-11 shrink-0 items-center justify-center rounded-2xl border transition-all duration-300 group-hover:scale-105 group-hover:bg-nude group-hover:text-cream group-hover:border-nude group-hover:shadow-md',
@@ -452,7 +457,7 @@ const filters: FilterOption[] = [
                                 {/* Category Overview Description (Hover Reveal / Quiet Luxury Accent) */}
                                 {category.description && (
                                     <p
-                                        class={`mt-3 font-sans text-xs leading-relaxed text-secondary-600/90 border-l-2 border-nude/50 pl-2.5 italic transition-all duration-300 group-hover:text-secondary-800 ${landingStaticText}`}
+                                        class={`mt-3 w-full min-w-0 font-sans text-xs leading-relaxed text-secondary-600/90 border-l-2 border-nude/50 pl-2.5 italic transition-all duration-300 group-hover:text-secondary-800 ${landingStaticText}`}
                                     >
                                         {category.description}
                                     </p>
