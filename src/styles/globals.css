@@ -97,6 +97,7 @@
 html {
     overflow-x: clip;
     scroll-behavior: smooth;
+    scrollbar-gutter: stable;
 }
 
 body {

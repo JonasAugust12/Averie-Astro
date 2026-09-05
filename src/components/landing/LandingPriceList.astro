@@ -18,7 +18,8 @@ import {
 } from '@/lib/styles';
 
 // Categorize items into filter groups for intuitive mobile & desktop navigation
-type FilterGroup = 'all' | 'hands-feet' | 'gel-dip' | 'enhancements' | 'skincare' | 'addons';
+type FilterGroup =
+    'all' | 'hands-feet' | 'gel-dip' | 'gelx-builder' | 'acrylic' | 'skincare' | 'addons';
 
 interface FilterOption {
     id: FilterGroup;
@@ -37,10 +38,11 @@ const getFilterGroup = (categoryId: string): FilterGroup => {
         case 'gel-polish':
         case 'dip':
             return 'gel-dip';
-        case 'acrylic':
         case 'gel-x':
         case 'builder':
-            return 'enhancements';
+            return 'gelx-builder';
+        case 'acrylic':
+            return 'acrylic';
         case 'waxing':
         case 'facials':
             return 'skincare';
@@ -65,7 +67,8 @@ const filters: FilterOption[] = [
     { id: 'hands-feet', label: 'Hands & Feet', count: filterGroupsCount['hands-feet'] || 0 },
     { id: 'addons', label: 'Add-Ons', count: filterGroupsCount['addons'] || 0 },
     { id: 'gel-dip', label: 'Gel & Dip', count: filterGroupsCount['gel-dip'] || 0 },
-    { id: 'enhancements', label: 'Enhancements', count: filterGroupsCount['enhancements'] || 0 },
+    { id: 'gelx-builder', label: 'Gel-X & Builder', count: filterGroupsCount['gelx-builder'] || 0 },
+    { id: 'acrylic', label: 'Acrylic', count: filterGroupsCount['acrylic'] || 0 },
     { id: 'skincare', label: 'Facials & Waxing', count: filterGroupsCount['skincare'] || 0 },
 ];
 ---
@@ -76,7 +79,7 @@ const filters: FilterOption[] = [
     aria-labelledby="pricing-title"
 >
     <!-- Floating Mobile Ambient Color Bubbles (Matching LandingServices, LandingHoursCta, LandingTestimonials) -->
-    <div class="pointer-events-none absolute inset-0 -z-10 overflow-visible md:hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10 overflow-hidden md:hidden">
         <div
             class="absolute top-10 -left-6 h-64 w-64 rounded-full bg-primary01/35 blur-3xl animate-ambient-pulse sm:h-72 sm:w-72"
             style="animation-delay: 1.5s;"
@@ -179,10 +182,10 @@ const filters: FilterOption[] = [
     <FadeIn delay={0.1} class="relative z-10 mb-8 sm:mb-12">
         <nav
             aria-label="Pricing Categories Filter"
-            class="-mx-4 flex overflow-x-auto px-4 py-2 scrollbar-none snap-x sm:mx-0 sm:justify-center sm:px-0"
+            class="-mx-4 flex overflow-x-auto px-4 py-2 scrollbar-none snap-x scroll-smooth sm:mx-0 sm:justify-center sm:px-0"
         >
             <div
-                class="inline-flex shrink-0 items-center rounded-full border border-nude/30 bg-linear-to-r from-cream/95 via-white/90 to-tertiary-100/90 p-1.5 shadow-[0_8px_28px_-6px_rgba(58,48,39,0.09)] backdrop-blur-md transition-all duration-300 sm:flex-wrap sm:justify-center"
+                class="inline-flex min-w-max shrink-0 items-center rounded-full border border-nude/30 bg-linear-to-r from-cream/95 via-white/90 to-tertiary-100/90 p-1.5 shadow-[0_8px_28px_-6px_rgba(58,48,39,0.09)] backdrop-blur-md transition-all duration-300 sm:min-w-0 sm:flex-wrap sm:justify-center"
             >
                 <ul
                     class="flex shrink-0 items-center gap-1.5 sm:flex-wrap sm:justify-center"
@@ -190,14 +193,14 @@ const filters: FilterOption[] = [
                 >
                     {
                         filters.map((filter, index) => (
-                            <li role="presentation" class="snap-start">
+                            <li role="presentation" class="snap-start shrink-0">
                                 <button
                                     type="button"
                                     role="tab"
                                     aria-selected={index === 0 ? 'true' : 'false'}
                                     data-filter-target={filter.id}
                                     class:list={[
-                                        'price-filter-btn group inline-flex items-center gap-2 rounded-full px-4 py-2 font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer select-none active:scale-95 min-h-10 touch-manipulation border',
+                                        'price-filter-btn group inline-flex items-center gap-2 whitespace-nowrap rounded-full px-4 py-2 font-sans text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer select-none active:scale-95 min-h-10 touch-manipulation border',
                                         index === 0
                                             ? 'bg-third text-cream border-nude/40 shadow-sm scale-[1.02]'
                                             : 'bg-transparent text-secondary-800 border-transparent hover:bg-nude/10 hover:text-secondary-900 hover:border-nude/25',
@@ -237,18 +240,15 @@ const filters: FilterOption[] = [
         </nav>
     </FadeIn>
 
-    <!-- Pricing Grid -->
-    <div
-        id="price-cards-grid"
-        class="relative z-10 grid gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3 transition-all duration-300"
-    >
+    <!-- Pricing Grid (Masonry) -->
+    <div id="price-cards-grid" class="relative z-10">
         {
             priceCategories.map((category, i) => {
                 const isFeatured = category.id === 'signature';
                 const group = getFilterGroup(category.id);
 
                 return (
-                    <FadeIn delay={0.05 * (i % 6)} class="price-category-wrapper h-full">
+                    <FadeIn delay={0.05 * (i % 6)} class="price-category-wrapper">
                         <article
                             data-filter-group={group}
                             data-category-id={category.id}
@@ -418,7 +418,7 @@ const filters: FilterOption[] = [
                             )}
 
                             {/* Card Header */}
-                            <header class="relative z-10 mb-4 flex flex-col border-b border-nude/25 pb-4 pr-12">
+                            <header class="relative z-10 mb-4 flex flex-col border-b border-nude/25 pb-4 pr-24 sm:pr-12">
                                 <div class="flex items-start gap-3.5">
                                     <div
                                         class:list={[
@@ -461,9 +461,9 @@ const filters: FilterOption[] = [
                             <ul class="relative z-10 flex flex-1 flex-col gap-2.5" role="list">
                                 {category.items.map((item) => (
                                     <li class="group/item flex flex-col rounded-xl px-2.5 py-2 -mx-2.5 transition-all duration-200 hover:bg-tertiary-100/90 hover:shadow-2xs active:bg-tertiary-200/70 active:scale-[0.99] touch-manipulation cursor-pointer">
-                                        <div class="flex items-baseline justify-between gap-2">
+                                        <div class="flex items-baseline justify-between gap-2 min-w-0">
                                             <span
-                                                class={`shrink font-sans text-sm leading-snug font-semibold text-third group-hover/item:text-secondary-900 transition-colors sm:text-[15px] ${landingStaticText}`}
+                                                class={`min-w-0 shrink font-sans text-sm leading-snug font-semibold text-third group-hover/item:text-secondary-900 transition-colors sm:text-[15px] ${landingStaticText}`}
                                             >
                                                 {item.name}
                                             </span>
@@ -672,8 +672,63 @@ const filters: FilterOption[] = [
     </FadeIn>
 </section>
 
-<!-- Client-side Interactive Filter Script -->
+<!-- Client-side: Masonry Layout + Filter Script -->
 <script>
+    // ─── Masonry ────────────────────────────────────────────────────────────────
+    function getColumns(): number {
+        const w = window.innerWidth;
+        if (w >= 1280) return 3; // xl
+        if (w >= 640) return 2; // sm
+        return 1;
+    }
+
+    function layoutMasonry() {
+        const grid = document.getElementById('price-cards-grid') as HTMLElement | null;
+        if (!grid) return;
+
+        const wrappers = Array.from(
+            grid.querySelectorAll<HTMLElement>('.price-category-wrapper'),
+        ).filter((w) => w.style.display !== 'none');
+
+        if (wrappers.length === 0) {
+            grid.style.height = '0px';
+            return;
+        }
+
+        const columns = getColumns();
+        const gap = window.innerWidth >= 1024 ? 24 : 20; // lg:gap-6 = 24px, else gap-5 = 20px
+        const gridWidth = grid.clientWidth;
+        const colWidth = columns === 1 ? gridWidth : (gridWidth - gap * (columns - 1)) / columns;
+
+        // Reset to block before measuring heights
+        wrappers.forEach((wrapper) => {
+            wrapper.style.position = 'absolute';
+            wrapper.style.width = colWidth + 'px';
+        });
+
+        const colHeights = new Array<number>(columns).fill(0);
+
+        wrappers.forEach((wrapper) => {
+            const col = colHeights.indexOf(Math.min(...colHeights));
+            const x = col * (colWidth + gap);
+            const y = colHeights[col];
+
+            wrapper.style.left = x + 'px';
+            wrapper.style.top = y + 'px';
+
+            colHeights[col] += wrapper.offsetHeight + gap;
+        });
+
+        grid.style.height = Math.max(...colHeights) - gap + 'px';
+    }
+
+    let resizeTimer: ReturnType<typeof setTimeout>;
+    function onResize() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(layoutMasonry, 100);
+    }
+
+    // ─── Filter ─────────────────────────────────────────────────────────────────
     function initPriceListFilters() {
         const filterBtns = document.querySelectorAll<HTMLButtonElement>('.price-filter-btn');
         const categoryCards = document.querySelectorAll<HTMLElement>('.price-category-card');
@@ -685,7 +740,14 @@ const filters: FilterOption[] = [
                 const targetGroup = btn.getAttribute('data-filter-target');
                 if (!targetGroup) return;
 
-                // Update active button accessibility and visuals
+                // Scroll tab into view inside nav container only (prevent window layout shift)
+                const nav = btn.closest('nav');
+                if (nav && nav.scrollWidth > nav.clientWidth) {
+                    const scrollLeft = btn.offsetLeft - nav.clientWidth / 2 + btn.clientWidth / 2;
+                    nav.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+                }
+
+                // Update active button visuals
                 filterBtns.forEach((b) => {
                     const isActive = b === btn;
                     b.setAttribute('aria-selected', isActive ? 'true' : 'false');
@@ -709,15 +771,10 @@ const filters: FilterOption[] = [
                             'shadow-sm',
                             'scale-[1.02]',
                         );
-
-                        if (badge) {
-                            badge.classList.remove('bg-nude/10', 'text-nude', 'border-nude/15');
-                            badge.classList.add('bg-nude/25', 'text-cream', 'border-nude/30');
-                        }
-                        if (sparkle) {
-                            sparkle.classList.remove('opacity-0', 'scale-0', 'w-0', '-mr-1');
-                            sparkle.classList.add('opacity-100', 'scale-100');
-                        }
+                        badge?.classList.remove('bg-nude/10', 'text-nude', 'border-nude/15');
+                        badge?.classList.add('bg-nude/25', 'text-cream', 'border-nude/30');
+                        sparkle?.classList.remove('opacity-0', 'scale-0', 'w-0', '-mr-1');
+                        sparkle?.classList.add('opacity-100', 'scale-100');
                     } else {
                         b.classList.remove(
                             'bg-third',
@@ -734,32 +791,30 @@ const filters: FilterOption[] = [
                             'hover:text-secondary-900',
                             'hover:border-nude/25',
                         );
-
-                        if (badge) {
-                            badge.classList.remove('bg-nude/25', 'text-cream', 'border-nude/30');
-                            badge.classList.add('bg-nude/10', 'text-nude', 'border-nude/15');
-                        }
-                        if (sparkle) {
-                            sparkle.classList.remove('opacity-100', 'scale-100');
-                            sparkle.classList.add('opacity-0', 'scale-0', 'w-0', '-mr-1');
-                        }
+                        badge?.classList.remove('bg-nude/25', 'text-cream', 'border-nude/30');
+                        badge?.classList.add('bg-nude/10', 'text-nude', 'border-nude/15');
+                        sparkle?.classList.remove('opacity-100', 'scale-100');
+                        sparkle?.classList.add('opacity-0', 'scale-0', 'w-0', '-mr-1');
                     }
                 });
 
-                // Filter category cards with smooth scale/opacity animation
+                // Show / hide cards then re-layout masonry
+                let hidePending = 0;
+
                 categoryCards.forEach((card) => {
                     const cardGroup = card.getAttribute('data-filter-group');
                     const wrapper = card.closest('.price-category-wrapper') as HTMLElement | null;
                     const shouldShow = targetGroup === 'all' || cardGroup === targetGroup;
 
                     if (shouldShow) {
-                        if (wrapper) wrapper.style.display = 'block';
+                        if (wrapper) wrapper.style.display = '';
                         card.style.display = 'flex';
                         requestAnimationFrame(() => {
                             card.style.opacity = '1';
                             card.style.transform = 'scale(1)';
                         });
                     } else {
+                        hidePending++;
                         card.style.opacity = '0';
                         card.style.transform = 'scale(0.96)';
                         setTimeout(() => {
@@ -767,14 +822,40 @@ const filters: FilterOption[] = [
                                 card.style.display = 'none';
                                 if (wrapper) wrapper.style.display = 'none';
                             }
-                        }, 200);
+                            hidePending--;
+                            if (hidePending === 0) layoutMasonry();
+                        }, 220);
                     }
                 });
+
+                // If no cards were hidden (all shown), layout immediately
+                if (hidePending === 0) layoutMasonry();
             });
         });
     }
 
-    // Initialize on page load and support Astro View Transitions
-    initPriceListFilters();
-    document.addEventListener('astro:page-load', initPriceListFilters);
+    function init() {
+        initPriceListFilters();
+        // Run masonry after a frame to allow FadeIn wrappers to have their natural height
+        requestAnimationFrame(() => {
+            requestAnimationFrame(layoutMasonry);
+        });
+        window.removeEventListener('resize', onResize);
+        window.addEventListener('resize', onResize);
+    }
+
+    init();
+    document.addEventListener('astro:page-load', init);
 </script>
+
+<style>
+    /* Masonry wrapper — JS will set position/left/top/width */
+    .price-category-wrapper {
+        box-sizing: border-box;
+    }
+
+    /* Article card fills the full wrapper height */
+    .price-category-wrapper .price-category-card {
+        width: 100%;
+    }
+</style>
