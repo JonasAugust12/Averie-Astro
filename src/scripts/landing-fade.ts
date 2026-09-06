@@ -44,6 +44,11 @@ function reveal(el: HTMLElement, isMobile: boolean) {
     }
 }
 
+function isInInitialViewport(el: HTMLElement): boolean {
+    const rect = el.getBoundingClientRect();
+    return rect.top < window.innerHeight && rect.bottom > 0;
+}
+
 /**
  * Progressive-enhancement fade-in. Markup stays visible without JS so crawlers
  * and no-JS users still see full content.
@@ -63,10 +68,6 @@ export function initLandingFade() {
 
     const isMobile = isMobileViewport();
     const pending = new WeakSet<Element>();
-
-    for (const el of nodes) {
-        resetFadeState(el);
-    }
 
     // Mobile: trigger earlier so the animation plays fully inside the viewport.
     // Desktop: keep the subtle bottom-clip for a staggered "rising" feel.
@@ -93,6 +94,11 @@ export function initLandingFade() {
     }, observerOptions);
 
     for (const el of nodes) {
+        resetFadeState(el);
+
+        // Above-the-fold: keep visible for LCP crawlers (Lighthouse, Googlebot).
+        if (isInInitialViewport(el)) continue;
+
         observer.observe(el);
     }
 
