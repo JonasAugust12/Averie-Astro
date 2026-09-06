@@ -7,6 +7,9 @@ export const BOOKING_URL = 'https://www.lldtek.org/salon/appt/VFVGZk1USXpPVEk9';
 /** Cat loading overlay duration before redirecting to booking */
 export const BOOKING_LOADING_MS = 1800;
 
+/** Google Analytics 4 measurement ID */
+export const GA_ID = 'G-QV2RCR6H8P';
+
 export const SEO = {
     title: 'Averie Nails & Spa | Luxury Nail Salon in Cohasset, MA',
     description:

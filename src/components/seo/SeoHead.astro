@@ -1,5 +1,6 @@
 ---
-import { SEO, absoluteUrl } from '@/lib/site';
+import { GA_ID, SEO, absoluteUrl } from '@/lib/site';
+import montserratRegular from '@fontsource/montserrat/files/montserrat-latin-400-normal.woff2?url';
 import montserratSemiBold from '@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url';
 
 export interface Props {
@@ -7,6 +8,7 @@ export interface Props {
     description?: string;
     canonical?: string;
     ogImage?: string;
+    robots?: string;
     jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -15,6 +17,7 @@ const {
     description = SEO.description,
     canonical = '/',
     ogImage = SEO.ogImage,
+    robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
     jsonLd,
 } = Astro.props;
 
@@ -28,11 +31,7 @@ const imageUrl = absoluteUrl(ogImage);
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
 <meta name="description" content={description} />
-<meta name="keywords" content={SEO.keywords} />
-<meta
-    name="robots"
-    content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-/>
+<meta name="robots" content={robots} />
 <link rel="canonical" href={canonicalUrl} />
 <meta name="google-site-verification" content={SEO.googleSiteVerification} />
 <meta name="theme-color" content="#f8f7f3" />
@@ -53,15 +52,28 @@ const imageUrl = absoluteUrl(ogImage);
 
 <!-- Twitter / X (optional — Facebook & Instagram use Open Graph above) -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@averienailspa" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={imageUrl} />
 <meta name="twitter:image:alt" content="Averie Nails & Spa — Luxury Nail Salon in Cohasset, MA" />
 
-<!-- Icons & LCP -->
+<!-- Icons & fonts -->
 <link rel="icon" href="/favicon.ico" sizes="48x48" />
 <link rel="icon" type="image/png" href="/icons/logo_round.png" sizes="512x512" />
 <link rel="apple-touch-icon" href="/icons/logo_round.png" />
+<link rel="preload" as="font" type="font/woff2" href={montserratRegular} crossorigin="anonymous" />
 <link rel="preload" as="font" type="font/woff2" href={montserratSemiBold} crossorigin="anonymous" />
+
+<!-- Google tag (gtag.js) -->
+<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
+<script is:inline define:vars={{ gaId: GA_ID }}>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(...args) {
+        dataLayer.push(args);
+    }
+    gtag('js', new Date());
+    gtag('config', gaId);
+</script>
 
 {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}

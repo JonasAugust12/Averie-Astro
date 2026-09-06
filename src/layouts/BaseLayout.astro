@@ -4,7 +4,7 @@ import SeoHead from '@/components/seo/SeoHead.astro';
 import LoadingOverlay from '@/components/shared/LoadingOverlay.astro';
 import { landingJsonLd } from '@/lib/json-ld';
 
-const { title, description, canonical } = Astro.props;
+const { title, description, canonical, robots } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,9 +14,9 @@ const { title, description, canonical } = Astro.props;
             title={title}
             description={description}
             canonical={canonical}
+            robots={robots}
             jsonLd={landingJsonLd}
         />
-        <link rel="preload" href="/animations/loading.gif" as="image" />
     </head>
     <body class="antialiased">
         <a

@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { cn } from '@/lib/cn';
 import { isPromotionActive, promotion } from '@/lib/promotion';
+import { bookingUrl, isBookingUrl } from '@/lib/site';
 import { landingBody, landingEyebrow, landingTitle, landingStaticText } from '@/lib/styles';
 
 const active = isPromotionActive();
@@ -31,7 +32,8 @@ const aspectRatio =
         : '4 / 5';
 
 const ctaText = promotion.ctaText || 'Book Appointment';
-const ctaLink = promotion.ctaLink || '/#hours';
+const ctaLink = promotion.ctaLink || bookingUrl();
+const isBookingCta = isBookingUrl(ctaLink);
 ---
 
 {
@@ -41,13 +43,13 @@ const ctaLink = promotion.ctaLink || '/#hours';
             class={cn(
                 'relative isolate py-8 sm:py-12 md:py-24',
                 "before:pointer-events-none before:absolute before:inset-y-0 before:left-1/2 before:-z-10 before:w-screen before:-translate-x-1/2 before:content-['']",
-                'before:bg-[linear-gradient(to_right,rgba(120,113,108,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(120,113,108,0.06)_1px,transparent_1px)] before:bg-[size:24px_24px]',
+                'before:bg-[linear-gradient(to_right,rgba(120,113,108,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(120,113,108,0.06)_1px,transparent_1px)] before:bg-size-[24px_24px]',
             )}
         >
             {/* Running Text Luxury Ticker */}
-            <div class="relative mb-6 md:mb-8 w-full overflow-hidden rounded-full border border-nude/20 bg-gradient-to-r from-white/90 via-tertiary-50/90 to-white/90 py-2 sm:py-2.5 shadow-xs backdrop-blur-md">
-                <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-12 bg-gradient-to-r from-cream to-transparent" />
-                <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-12 bg-gradient-to-l from-cream to-transparent" />
+            <div class="relative mb-6 md:mb-8 w-full overflow-hidden rounded-full border border-nude/20 bg-linear-to-r from-white/90 via-tertiary-50/90 to-white/90 py-2 sm:py-2.5 shadow-xs backdrop-blur-md">
+                <div class="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-12 bg-linear-to-r from-cream to-transparent" />
+                <div class="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-12 bg-linear-to-l from-cream to-transparent" />
                 <div class="animate-marquee whitespace-nowrap text-[11px] sm:text-xs font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em] text-nude select-none">
                     <span class="mx-4 sm:mx-6 inline-flex items-center gap-2">
                         <svg
@@ -119,9 +121,10 @@ const ctaLink = promotion.ctaLink || '/#hours';
                     <div class="mt-5 sm:mt-6 md:mt-7 flex w-full flex-col items-center gap-2.5 sm:w-auto sm:flex-row sm:items-center">
                         <a
                             href={ctaLink}
+                            {...(isBookingCta ? { 'data-booking-link': true } : {})}
                             class="group relative flex h-11.5 sm:h-12.5 w-full max-w-xs items-center justify-center gap-2 overflow-hidden rounded-full bg-third px-6 sm:px-8 text-xs sm:text-sm font-semibold uppercase tracking-wider text-cream shadow-[0_8px_20px_-4px_rgba(43,38,35,0.3)] transition-all duration-300 hover:shadow-[0_12px_28px_-6px_rgba(43,38,35,0.4)] hover:-translate-y-0.5 sm:w-auto sm:max-w-none"
                         >
-                            <div class="pointer-events-none absolute inset-0 -translate-x-full animate-shine bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                            <div class="pointer-events-none absolute inset-0 -translate-x-full animate-shine bg-linear-to-r from-transparent via-white/25 to-transparent" />
                             <span>{ctaText}</span>
                             <svg
                                 class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
@@ -261,14 +264,14 @@ const ctaLink = promotion.ctaLink || '/#hours';
                                         background: `linear-gradient(to right, color-mix(in srgb, ${promoColor} 90%, black), ${promoColor}, color-mix(in srgb, ${promoColor} 90%, black))`,
                                     }}
                                 >
-                                    <div class="absolute inset-0 -translate-x-full animate-shine bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                                    <div class="absolute inset-0 -translate-x-full animate-shine bg-linear-to-r from-transparent via-white/40 to-transparent" />
                                     LIMITED OFFER
                                 </div>
                             </div>
 
                             {/* Flexible Image Container with min/max height and object-contain */}
                             <div
-                                class="animate-promotion-wiggle relative mx-auto w-full min-h-70 max-h-140 overflow-hidden rounded-[1.35rem] bg-gradient-to-b from-stone-100 to-stone-50/80 flex items-center justify-center"
+                                class="animate-promotion-wiggle relative mx-auto w-full min-h-70 max-h-140 overflow-hidden rounded-[1.35rem] bg-linear-to-b from-stone-100 to-stone-50/80 flex items-center justify-center"
                                 style={{ aspectRatio, maxHeight: '560px' }}
                             >
                                 {promotion.imageUrl ? (
@@ -285,7 +288,7 @@ const ctaLink = promotion.ctaLink || '/#hours';
                                         class="h-full w-full object-contain pointer-events-none select-none [-webkit-user-drag:none]"
                                     />
                                 ) : null}
-                                <div class="pointer-events-none absolute inset-0 -translate-x-full animate-shine bg-gradient-to-r from-transparent via-white/35 to-transparent z-10" />
+                                <div class="pointer-events-none absolute inset-0 -translate-x-full animate-shine bg-linear-to-r from-transparent via-white/35 to-transparent z-10" />
                             </div>
                         </div>
                     </div>

@@ -50,7 +50,6 @@ const localBusiness = {
         },
         { '@type': 'Place', name: 'South Shore, Massachusetts' },
     ],
-    keywords: SEO.keywords,
     openingHoursSpecification: [
         {
             '@type': 'OpeningHoursSpecification',

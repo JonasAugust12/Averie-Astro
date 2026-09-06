@@ -90,7 +90,7 @@ Quan trọng nhất cho salon local — meta website **không thay thế** đư�
 ## Tuỳ chọn
 
 - [ ] [Bing Webmaster Tools](https://www.bing.com/webmasters) — submit cùng sitemap
-- [ ] GA4 — thêm `PUBLIC_GA_ID` (placeholder trong `.env.example`; chưa wire vào `<head>`)
+- [x] GA4 — wire `PUBLIC_GA_ID` in `SeoHead.astro` (set env on Vercel to enable)
 - [ ] Backlinks: Instagram bio, Yelp, thư mục local MA
 - [ ] JSON-LD `aggregateRating` — **chỉ khi** review khớp Google Business (tránh spam)
 
