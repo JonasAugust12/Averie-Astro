@@ -11,7 +11,7 @@ export const BOOKING_LOADING_MS = 1800;
 export const GA_ID = 'G-QV2RCR6H8P';
 
 export const SEO = {
-    title: 'Averie Nails & Spa | Luxury Nail Salon in Cohasset, MA',
+    title: 'Averie Nails Spa | Luxury Nail Salon in Cohasset, MA',
     description:
         'Averie Nails Spa in Cohasset, MA - manicures, pedicures, gel polish, acrylic, dip powder, Gel X, builder gel, Dermalogica facials & waxing. Serving the South Shore. Book online or call 781-923-1955.',
     keywords:
