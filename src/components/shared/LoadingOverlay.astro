@@ -1,0 +1,40 @@
+---
+/** Cat-spinner loading overlay — matches Averie app LoadingOverlay + LoadingGif */
+---
+
+<div
+    id="loading-overlay"
+    class="loading-overlay fixed inset-0 z-100000 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+    role="alert"
+    aria-busy="false"
+    aria-live="assertive"
+    hidden
+>
+    <div
+        class="flex flex-col items-center rounded-3xl border border-white/20 bg-cream/95 px-10 py-8 shadow-2xl backdrop-blur-xl"
+    >
+        <div class="relative h-40 w-40 shrink-0 sm:h-48 sm:w-48" aria-hidden="true">
+            <img
+                src="/animations/loading.gif"
+                alt=""
+                width="256"
+                height="256"
+                class="h-full w-full object-contain"
+                decoding="async"
+            />
+            <img
+                src="/icons/icon.png"
+                alt=""
+                width="97"
+                height="97"
+                class="absolute top-1/2 left-1/2 z-10 h-[38%] w-[38%] -translate-x-1/2 -translate-y-1/2 rounded-full object-contain"
+            />
+        </div>
+        <p
+            data-loading-message
+            class="mt-4 max-w-xs text-center font-sans text-sm font-semibold uppercase tracking-[0.2em] text-primary"
+        >
+            Preparing your booking...
+        </p>
+    </div>
+</div>

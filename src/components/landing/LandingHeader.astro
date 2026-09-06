@@ -51,6 +51,7 @@ const nav = [
                 <LanguageSwitcher />
                 <a
                     href={bookingUrl()}
+                    data-booking-link
                     class={`hidden h-9.5 items-center justify-center whitespace-nowrap rounded-full bg-third px-4 font-sans text-xs font-semibold uppercase tracking-wider text-cream shadow-xs transition-all duration-300 hover:-translate-y-0.5 hover:bg-primary-800 lg:inline-flex lg:h-10.5 lg:px-6 ${landingInteractive}`}
                 >
                     Book Now
@@ -112,6 +113,7 @@ const nav = [
                 }
                 <a
                     href={bookingUrl()}
+                    data-booking-link
                     class={`mt-3 flex h-12 items-center justify-center gap-2 rounded-full bg-third font-sans text-xs font-semibold uppercase tracking-wider text-cream shadow-md transition-transform active:scale-98 landing-mobile-link ${landingInteractive}`}
                 >
                     <span>Book Now</span>

@@ -1,5 +1,6 @@
 ---
 import { cn } from '@/lib/cn';
+import { isBookingUrl } from '@/lib/site';
 import { landingInteractive } from '@/lib/styles';
 
 export interface Props {
@@ -11,7 +12,8 @@ export interface Props {
 
 const { href, variant = 'solid', class: className = '', external = false } = Astro.props;
 
-const isExternal = external || /^(https?:|mailto:|tel:|sms:)/i.test(href);
+const booking = isBookingUrl(href);
+const isExternal = !booking && (external || /^(https?:|mailto:|tel:|sms:)/i.test(href));
 ---
 
 <a
@@ -24,6 +26,7 @@ const isExternal = external || /^(https?:|mailto:|tel:|sms:)/i.test(href);
             : 'border border-third bg-transparent text-third hover:bg-third hover:text-cream',
         className,
     )}
+    {...booking ? { 'data-booking-link': true } : {}}
     {...isExternal && /^https?:/i.test(href)
         ? { target: '_blank', rel: 'noopener noreferrer' }
         : {}}

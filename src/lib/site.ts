@@ -4,6 +4,9 @@ export const SITE_URL = 'https://www.averienails.com';
 /** External LLDTEK booking page */
 export const BOOKING_URL = 'https://www.lldtek.org/salon/appt/VFVGZk1USXpPVEk9';
 
+/** Cat loading overlay duration before redirecting to booking */
+export const BOOKING_LOADING_MS = 1800;
+
 export const SEO = {
     title: 'Averie Nails & Spa | Luxury Nail Salon in Cohasset, MA',
     description:
@@ -43,4 +46,13 @@ export function absoluteUrl(path: string) {
 export function bookingUrl(path = '') {
     const base = BOOKING_URL.replace(/\/$/, '');
     return path ? `${base}${path.startsWith('/') ? path : `/${path}`}` : base;
+}
+
+export function isBookingUrl(href: string): boolean {
+    try {
+        const url = new URL(href, SITE_URL);
+        return url.hostname.includes('lldtek.org');
+    } catch {
+        return href.includes('lldtek.org');
+    }
 }
