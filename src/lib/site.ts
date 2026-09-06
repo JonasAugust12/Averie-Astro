@@ -17,9 +17,11 @@ export const SEO = {
     keywords:
         'nail salon Cohasset MA, nails in Cohasset, nails Cohasset Massachusetts, nail spa Cohasset, manicure pedicure Cohasset MA, gel nails Cohasset, acrylic nails Cohasset MA, dip powder nails Cohasset, Gel X Cohasset, builder gel Cohasset, nail salon South Shore MA, beauty salon Cohasset MA, Dermalogica facials Cohasset, waxing Cohasset MA, nail salon near me Cohasset',
     ogImage: '/og.jpg',
+    ogImageAlt: 'Averie Nails Spa - Luxury Nail Salon in Cohasset, MA',
     ogImageWidth: 1086,
     ogImageHeight: 630,
     ogImageType: 'image/jpeg',
+    twitterSite: '@averienailspa',
     logo: '/icons/logo.png',
     googleSiteVerification: 'google990ff0b977e8aa15',
     phone: '+17819231955',
