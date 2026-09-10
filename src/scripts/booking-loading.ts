@@ -5,6 +5,7 @@ const DEFAULT_MESSAGE = 'Preparing your booking...';
 
 let abortController: AbortController | null = null;
 let redirectTimer: ReturnType<typeof setTimeout> | null = null;
+let lifecycleBound = false;
 
 function getOverlay() {
     return document.getElementById(OVERLAY_ID) as HTMLElement | null;
@@ -31,6 +32,36 @@ function hideOverlay() {
     overlay.setAttribute('aria-busy', 'false');
     document.documentElement.classList.remove('overflow-hidden');
     document.body.classList.remove('overflow-hidden');
+}
+
+function resetBookingLoadingState() {
+    if (redirectTimer) {
+        clearTimeout(redirectTimer);
+        redirectTimer = null;
+    }
+    hideOverlay();
+}
+
+/**
+ * When navigating away via location.assign(), the browser may restore this page
+ * from bfcache on Back with DOM/JS frozen — including a visible overlay.
+ */
+function bindLifecycleRecovery() {
+    if (lifecycleBound) return;
+    lifecycleBound = true;
+
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            resetBookingLoadingState();
+        }
+    });
+
+    window.addEventListener('pagehide', () => {
+        if (redirectTimer) {
+            clearTimeout(redirectTimer);
+            redirectTimer = null;
+        }
+    });
 }
 
 function navigateToBooking(url: string) {
@@ -76,12 +107,10 @@ function handleBookingClick(event: MouseEvent) {
  * before navigating to the external LLDTEK booking domain.
  */
 export function initBookingLoading() {
+    bindLifecycleRecovery();
+
     abortController?.abort();
-    if (redirectTimer) {
-        clearTimeout(redirectTimer);
-        redirectTimer = null;
-    }
-    hideOverlay();
+    resetBookingLoadingState();
 
     abortController = new AbortController();
     const { signal } = abortController;

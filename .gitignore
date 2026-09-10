@@ -148,3 +148,6 @@ vite.config.ts.timestamp-*
 
 # jetbrains setting folder
 .idea/
+
+# Agent tooling
+.agent
