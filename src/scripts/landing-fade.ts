@@ -93,11 +93,16 @@ export function initLandingFade() {
         }
     }, observerOptions);
 
+    // Batch layout reads before DOM writes to avoid forced reflow (PageSpeed).
+    const inInitialViewport = new Map(nodes.map((el) => [el, isInInitialViewport(el)]));
+
     for (const el of nodes) {
         resetFadeState(el);
+    }
 
+    for (const el of nodes) {
         // Above-the-fold: keep visible for LCP crawlers (Lighthouse, Googlebot).
-        if (isInInitialViewport(el)) continue;
+        if (inInitialViewport.get(el)) continue;
 
         observer.observe(el);
     }

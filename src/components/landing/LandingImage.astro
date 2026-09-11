@@ -15,6 +15,10 @@ interface Props {
     /** Visible in first viewport: eager load, normal fetch priority */
     aboveFold?: boolean;
     fit?: 'cover' | 'contain' | 'fill' | 'inside' | 'outside';
+    /** Responsive `sizes` for srcset selection (does not change source quality). */
+    sizes?: string;
+    /** Width variants for srcset; defaults to display width and 2x. */
+    imageWidths?: number[];
 }
 
 const {
@@ -26,9 +30,13 @@ const {
     priority = false,
     aboveFold = false,
     fit = 'inside',
+    sizes,
+    imageWidths,
 } = Astro.props;
 
 const loading = priority || aboveFold ? 'eager' : 'lazy';
+const resolvedWidths = imageWidths ?? [width, width * 2];
+const resolvedSizes = sizes ?? `${width}px`;
 ---
 
 <Image
@@ -37,8 +45,8 @@ const loading = priority || aboveFold ? 'eager' : 'lazy';
     width={width}
     height={height}
     fit={fit}
-    widths={[width, width * 2]}
-    sizes={`${width}px`}
+    widths={resolvedWidths}
+    sizes={resolvedSizes}
     class={cn(landingImage, className)}
     loading={loading}
     fetchpriority={priority ? 'high' : 'auto'}

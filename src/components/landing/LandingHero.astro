@@ -49,9 +49,10 @@ import {
             </h1>
 
             <p
-                class={`mt-3 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-nude/90 sm:text-sm sm:tracking-[0.14em] ${landingStaticText}`}
+                class={`mt-3 font-sans text-xs font-semibold uppercase tracking-[0.12em] text-nude sm:text-sm sm:tracking-[0.14em] ${landingStaticText}`}
             >
-                Manicures · Pedicures · Builder Gel · Acrylic · Dip Powder · Gel X · Facials · Waxing
+                Manicures · Pedicures · Builder Gel · Acrylic · Dip Powder · Gel X · Facials ·
+                Waxing
             </p>
 
             <p class={`mt-3.5 max-w-lg md:mt-5 ${landingBody} text-secondary-600`}>
@@ -113,7 +114,7 @@ import {
                     }
                 </div>
                 <span class="font-semibold text-stone-800">5.0 on Google</span>
-                <span class="text-stone-400">•</span>
+                <span class="text-stone-500" aria-hidden="true">•</span>
                 <span>Cohasset, MA</span>
             </a>
         </FadeIn>
@@ -136,6 +137,8 @@ import {
                             width={500}
                             height={667}
                             priority
+                            sizes="min(100vw - 2rem, 384px)"
+                            imageWidths={[384, 500, 768]}
                             class="h-full w-full translate-x-[4%] object-cover transition-transform duration-1000 group-hover:scale-105"
                         />
                     </div>
@@ -162,7 +165,6 @@ import {
                         alt=""
                         width={450}
                         height={462}
-                        aboveFold
                         class="h-full w-full object-cover"
                     />
                 </div>
@@ -174,7 +176,6 @@ import {
                         alt=""
                         width={450}
                         height={458}
-                        aboveFold
                         class="h-full w-full object-cover"
                     />
                 </div>
@@ -187,6 +188,8 @@ import {
                         width={500}
                         height={750}
                         priority
+                        sizes="340px"
+                        imageWidths={[340, 500, 680]}
                         class="h-full w-full object-cover transition-transform duration-2000 group-hover:scale-105"
                     />
                 </div>

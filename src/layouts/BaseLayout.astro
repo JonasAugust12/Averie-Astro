@@ -32,10 +32,12 @@ const { title, description, canonical, robots } = Astro.props;
         </div>
         <LoadingOverlay />
         <script>
+            import { initDeferredAnalytics } from '@/scripts/deferred-analytics';
             import { initLandingNav } from '@/scripts/landing-nav';
             import { initLandingFade } from '@/scripts/landing-fade';
             import { initBookingLoading } from '@/scripts/booking-loading';
 
+            initDeferredAnalytics();
             initLandingNav();
             initLandingFade();
             initBookingLoading();

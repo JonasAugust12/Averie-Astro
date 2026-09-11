@@ -1,5 +1,5 @@
 ---
-import { GA_ID, SEO, absoluteUrl } from '@/lib/site';
+import { SEO, absoluteUrl } from '@/lib/site';
 import montserratRegular from '@fontsource/montserrat/files/montserrat-latin-400-normal.woff2?url';
 import montserratSemiBold from '@fontsource/montserrat/files/montserrat-latin-600-normal.woff2?url';
 
@@ -66,16 +66,5 @@ const imageUrl = absoluteUrl(ogImage);
 <link rel="apple-touch-icon" href="/icons/logo_round.png" />
 <link rel="preload" as="font" type="font/woff2" href={montserratRegular} crossorigin="anonymous" />
 <link rel="preload" as="font" type="font/woff2" href={montserratSemiBold} crossorigin="anonymous" />
-
-<!-- Google tag (gtag.js) -->
-<script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}></script>
-<script is:inline define:vars={{ gaId: GA_ID }}>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(...args) {
-        dataLayer.push(args);
-    }
-    gtag('js', new Date());
-    gtag('config', gaId);
-</script>
 
 {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
