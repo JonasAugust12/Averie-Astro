@@ -1,4 +1,4 @@
-const SELECTOR = '[data-fade-in]';
+const SELECTOR = '[data-fade-in]:not([data-fade-skip])';
 const ANIMATION_CLASS = 'animate-landing-fade-in-up';
 const LEGACY_CLASSES = ['fade-prepare', 'is-revealed'] as const;
 
