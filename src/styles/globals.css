@@ -370,3 +370,23 @@ h4 {
 .scrollbar-none::-webkit-scrollbar {
     display: none;
 }
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.price-category-wrapper {
+    box-sizing: border-box;
+}
+
+.price-category-wrapper .price-category-card {
+    width: 100%;
+}

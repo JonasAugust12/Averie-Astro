@@ -16,7 +16,7 @@
     "packageManager": "pnpm@10.33.0",
     "scripts": {
         "dev": "astro dev",
-        "build": "astro build",
+        "build": "astro build && node scripts/strip-asset-fingerprint.mjs",
         "preview": "astro preview",
         "astro": "astro",
         "lint": "eslint .",

@@ -672,23 +672,3 @@ const filters: FilterOption[] = [
         </div>
     </FadeIn>
 </section>
-
-<!-- Masonry layout + category filter -->
-<script>
-    import { initPriceList } from '@/scripts/price-list';
-
-    initPriceList();
-    document.addEventListener('astro:page-load', initPriceList);
-</script>
-
-<style>
-    /* Masonry wrapper — JS will set position/left/top/width */
-    .price-category-wrapper {
-        box-sizing: border-box;
-    }
-
-    /* Article card fills the full wrapper height */
-    .price-category-wrapper .price-category-card {
-        width: 100%;
-    }
-</style>

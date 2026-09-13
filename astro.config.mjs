@@ -14,6 +14,8 @@ export default defineConfig({
     },
     build: {
         inlineStylesheets: 'always',
+        /** Default `_astro` exposes the framework in DevTools Sources. */
+        assets: 'c',
     },
     integrations: [
         sitemap({
@@ -23,6 +25,13 @@ export default defineConfig({
     vite: {
         build: {
             sourcemap: false,
+            rollupOptions: {
+                output: {
+                    entryFileNames: 'c/[hash].js',
+                    chunkFileNames: 'c/[hash].js',
+                    assetFileNames: 'c/[hash][extname]',
+                },
+            },
         },
         plugins: [tailwindcss()],
     },
