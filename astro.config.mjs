@@ -21,6 +21,9 @@ export default defineConfig({
         }),
     ],
     vite: {
+        build: {
+            sourcemap: false,
+        },
         plugins: [tailwindcss()],
     },
 });
