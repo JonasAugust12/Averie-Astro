@@ -13,7 +13,6 @@ export type PriceCategory = {
         | 'signature'
         | 'dessert'
         | 'metime'
-        | 'gentlemen'
         | 'diva'
         | 'gel'
         | 'addon'
@@ -94,33 +93,11 @@ export const priceCategories: PriceCategory[] = [
         ],
     },
     {
-        id: 'gentlemen',
-        title: 'The Gentlemen',
-        subtitle: 'Masculine · Distinguished · Classic',
-        description:
-            'Tailored care for gentlemen. We remove dirt, trim edges, and soften tough calluses, leaving your hands and feet refreshed, clean, and smooth.',
-        icon: 'gentlemen',
-        items: [
-            {
-                name: 'Manicure',
-                price: '$30',
-                description:
-                    'Soak, cuticle & nail care, eucalyptus & mint moisturizing lotion massage, and warm towels treatment.',
-            },
-            {
-                name: 'Pedicure',
-                price: '$50',
-                description:
-                    'Warm mint eucalyptus soak, cuticle & nail care, sole softening, eucalyptus mint sugar scrub with aloe vera & vitamin A/E, hot stone massage, warm towels, and polish.',
-            },
-        ],
-    },
-    {
-        id: 'little-diva',
-        title: 'Little Diva (10 & under)',
+        id: 'little-star',
+        title: 'Little Star (10 & under)',
         subtitle: 'Fun · Natural · Pretty',
         description:
-            "Good things come in small packages! Averie's most gentle pampering care to make our little diva feel extra special.",
+            'Good things come in small packages. This service is designed to make our little guests feel special as we greet, treat, and care for their hands and feet.',
         icon: 'diva',
         items: [
             {
