@@ -151,3 +151,4 @@ vite.config.ts.timestamp-*
 
 # Agent tooling
 .agent
+.agent/*

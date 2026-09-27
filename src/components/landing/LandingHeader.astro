@@ -1,4 +1,5 @@
 ---
+import { isClosureNoticeActive } from '@/lib/closure-notice';
 import { isPromotionActive } from '@/lib/promotion';
 import { bookingUrl } from '@/lib/site';
 import { landingImages } from '@/lib/landing-images';
@@ -7,6 +8,7 @@ import LandingImage from '@/components/landing/LandingImage.astro';
 import { landingInteractive } from '@/lib/styles';
 
 const nav = [
+    ...(isClosureNoticeActive() ? [{ href: '#closure-notice', label: 'Notice' }] : []),
     ...(isPromotionActive() ? [{ href: '#promotion', label: 'Promotion' }] : []),
     { href: '#philosophy', label: 'About' },
     { href: '#services', label: 'Service' },
