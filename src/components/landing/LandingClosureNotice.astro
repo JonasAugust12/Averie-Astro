@@ -1,9 +1,18 @@
 ---
 import FadeIn from '@/components/landing/FadeIn.astro';
-import { closureNotice, isClosureNoticeActive } from '@/lib/closure-notice';
+import ClosureNoticeIcon from '@/components/landing/ClosureNoticeIcon.astro';
+import {
+    closureNotice,
+    isClosureNoticeActive,
+    normalizeClosureIcon,
+    resolveClosureEyebrow,
+} from '@/lib/closure-notice';
 import { landingBleedWhite, landingBody, landingEyebrow, landingStaticText } from '@/lib/styles';
 
 const active = isClosureNoticeActive();
+const icon = normalizeClosureIcon(closureNotice.icon);
+const eyebrow = resolveClosureEyebrow(closureNotice);
+const iconMotionClass = icon === 'storm' ? 'storm-icon-float' : 'animate-float-slow';
 ---
 
 {
@@ -13,20 +22,17 @@ const active = isClosureNoticeActive();
             class:list={['relative z-10 py-6 sm:py-10 md:py-12', landingBleedWhite]}
             aria-labelledby="closure-notice-title"
         >
-            <FadeIn class="mx-auto max-w-2xl lg:max-w-3xl px-3 sm:px-4">
+            <FadeIn class="mx-auto max-w-2xl px-3 sm:px-4 lg:max-w-3xl">
                 <div
                     class:list={[
                         'relative overflow-hidden rounded-2xl border border-nude/30 bg-linear-to-br from-white via-cream/80 to-tertiary-50/70 p-5 text-center shadow-[0_16px_45px_-15px_rgba(58,48,39,0.18)] backdrop-blur-xs sm:rounded-3xl sm:p-8 md:p-10',
                         landingStaticText,
                     ]}
                 >
-                    {/* Top ambient accent bar */}
                     <div
                         class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-linear-to-r from-transparent via-third/70 to-transparent"
                         aria-hidden="true"
                     />
-
-                    {/* Ambient glow backgrounds */}
                     <div
                         class="pointer-events-none absolute -right-12 -top-12 size-40 rounded-full bg-slate-400/10 blur-2xl sm:size-52"
                         aria-hidden="true"
@@ -37,82 +43,50 @@ const active = isClosureNoticeActive();
                     />
 
                     <div class="relative z-10 flex flex-col items-center">
-                        {/* Refined Weather/Advisory Header Badge */}
-                        <div class="mb-4 flex items-center justify-center gap-2.5 sm:gap-3">
-                            <div class="flex size-9 items-center justify-center rounded-full border border-nude/30 bg-white/90 text-third shadow-2xs sm:size-11">
-                                <svg
-                                    class="size-4.5 sm:size-5.5"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="1.75"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-                                    <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z" />
-                                    <path d="M12 15v3" />
-                                    <path d="M9 16v3" />
-                                    <path d="M15 16v3" />
-                                </svg>
-                            </div>
-                            <div class={landingEyebrow}>
-                                <span
-                                    class="animate-pulse-soft inline-flex size-2 rounded-full bg-third"
-                                    aria-hidden="true"
-                                />
-                                <span class="tracking-[0.16em] sm:tracking-[0.18em]">
-                                    Weather Advisory
-                                </span>
-                            </div>
+                        <div
+                            class:list={[
+                                'relative mb-4 flex size-20 items-center justify-center rounded-full border border-white/80 bg-white/90 shadow-[0_12px_30px_-10px_rgba(58,48,39,0.2)] backdrop-blur-sm sm:mb-5 sm:size-24',
+                                iconMotionClass,
+                            ]}
+                            aria-hidden="true"
+                        >
+                            <div class="absolute inset-3 rounded-full bg-slate-300/15 blur-xl" />
+                            <ClosureNoticeIcon icon={icon} class="relative size-14 sm:size-16" />
                         </div>
 
-                        {/* Notice Headline */}
+                        <div class={landingEyebrow}>
+                            <span
+                                class="animate-pulse-soft inline-flex size-2 rounded-full bg-third"
+                                aria-hidden="true"
+                            />
+                            <span class="tracking-[0.16em] sm:tracking-[0.18em]">{eyebrow}</span>
+                        </div>
+
                         <h2
                             id="closure-notice-title"
-                            class="font-display text-xl font-semibold uppercase leading-snug tracking-wide text-nude sm:text-2xl md:text-3xl lg:text-4xl"
+                            class="mt-4 font-display text-xl font-semibold uppercase leading-snug tracking-wide text-nude sm:mt-5 sm:text-2xl md:text-3xl lg:text-4xl"
                         >
                             {closureNotice.headline}
                         </h2>
 
-                        {/* Subtle Ornament Divider */}
                         <div class="my-3.5 flex items-center gap-2.5 sm:my-4" aria-hidden="true">
                             <span class="h-px w-6 bg-nude/25 sm:w-10" />
                             <span class="size-1.5 rotate-45 border border-third/60" />
                             <span class="h-px w-6 bg-nude/25 sm:w-10" />
                         </div>
 
-                        {/* Reason Statement */}
                         <p
                             class={`max-w-xl ${landingBody} text-sm text-secondary-700 sm:text-base md:text-lg`}
                         >
                             {closureNotice.reason}
                         </p>
 
-                        {/* Highlighted Announcement Card */}
                         <div class="mt-4 w-full max-w-xl rounded-xl border border-nude/25 bg-white/80 px-4 py-3.5 shadow-2xs backdrop-blur-md sm:mt-5 sm:rounded-2xl sm:px-6 sm:py-4">
-                            <div class="flex items-center justify-center gap-2">
-                                <svg
-                                    class="hidden size-4 shrink-0 text-third sm:block"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    aria-hidden="true"
-                                >
-                                    <circle cx="12" cy="12" r="10" />
-                                    <line x1="12" y1="8" x2="12" y2="12" />
-                                    <line x1="12" y1="16" x2="12.01" y2="16" />
-                                </svg>
-                                <p class="font-sans text-sm font-semibold leading-relaxed text-secondary-800 sm:text-base md:text-lg">
-                                    {closureNotice.announcement}
-                                </p>
-                            </div>
+                            <p class="font-sans text-sm font-semibold leading-relaxed text-secondary-800 sm:text-base md:text-lg">
+                                {closureNotice.announcement}
+                            </p>
                         </div>
 
-                        {/* Apology & Reassurance Message */}
                         <p
                             class={`mt-4 max-w-xl ${landingBody} text-xs text-secondary-600 sm:mt-5 sm:text-sm md:text-base`}
                         >

@@ -1,9 +1,11 @@
 {
-    "enabled": true,
+    "enabled": false,
+    "icon": "storm",
+    "eyebrow": "Weather advisory",
     "headline": "Closed Sunday, September 27",
     "reason": "Due to the storm and for the safety of our customers and staff.",
     "announcement": "Averie Nails Spa will be closed on Sunday, September 27, 2026.",
     "message": "We sincerely apologize for any inconvenience and appreciate your understanding. Please stay safe, and we look forward to seeing you soon on Monday.",
-    "startDate": "2026-09-24",
-    "endDate": "2026-09-27"
+    "startDate": "",
+    "endDate": ""
 }

@@ -1,0 +1,126 @@
+name: Update Closure Notice
+
+on:
+    workflow_dispatch:
+        inputs:
+            enabled:
+                type: choice
+                description: 'Show closure notice on homepage'
+                required: false
+                default: 'false'
+                options:
+                    - 'true'
+                    - 'false'
+            icon:
+                type: choice
+                description: 'Reason icon (storm, holiday, maintenance, snow, health, general)'
+                required: false
+                default: 'general'
+                options:
+                    - storm
+                    - holiday
+                    - maintenance
+                    - snow
+                    - health
+                    - general
+            eyebrow:
+                description: 'Short label above headline (blank = default for icon)'
+                required: false
+                default: ''
+            headline:
+                description: 'Main title (e.g. Closed Sunday, March 15)'
+                required: false
+                default: ''
+            reason:
+                description: 'Why we are closed (one line)'
+                required: false
+                default: ''
+            announcement:
+                description: 'Primary closure message (highlighted)'
+                required: false
+                default: ''
+            message:
+                description: 'Description / apology / when we reopen'
+                required: false
+                default: ''
+            start_date:
+                description: 'Show from YYYY-MM-DD (blank = no start limit)'
+                required: false
+                default: ''
+            end_date:
+                description: 'Hide after YYYY-MM-DD (blank = no end limit)'
+                required: false
+                default: ''
+
+permissions:
+    contents: write
+
+jobs:
+    update-closure-notice:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Update closure-notice.json
+              uses: actions/github-script@v7
+              with:
+                  script: |
+                      const fs = require('fs');
+                      const path = 'src/data/closure-notice.json';
+                      const validIcons = ['storm', 'holiday', 'maintenance', 'snow', 'health', 'general'];
+
+                      let currentData = {};
+                      if (fs.existsSync(path)) {
+                          try {
+                              currentData = JSON.parse(fs.readFileSync(path, 'utf8'));
+                          } catch (e) {
+                              console.error('Error reading closure-notice.json:', e);
+                          }
+                      }
+
+                      const inputEnabled = ${{ toJson(inputs.enabled) }};
+                      const inputIcon = ${{ toJson(inputs.icon) }};
+                      const inputEyebrow = ${{ toJson(inputs.eyebrow) }};
+                      const inputHeadline = ${{ toJson(inputs.headline) }};
+                      const inputReason = ${{ toJson(inputs.reason) }};
+                      const inputAnnouncement = ${{ toJson(inputs.announcement) }};
+                      const inputMessage = ${{ toJson(inputs.message) }};
+                      const inputStartDate = ${{ toJson(inputs.start_date) }};
+                      const inputEndDate = ${{ toJson(inputs.end_date) }};
+
+                      const pick = (input, fallback) =>
+                          input && String(input).trim() !== '' ? String(input).trim() : fallback;
+
+                      const icon =
+                          inputIcon && validIcons.includes(inputIcon)
+                              ? inputIcon
+                              : currentData.icon && validIcons.includes(currentData.icon)
+                                ? currentData.icon
+                                : 'general';
+
+                      const newData = {
+                          enabled:
+                              inputEnabled !== ''
+                                  ? inputEnabled === 'true'
+                                  : (currentData.enabled ?? false),
+                          icon,
+                          eyebrow: pick(inputEyebrow, currentData.eyebrow ?? ''),
+                          headline: pick(inputHeadline, currentData.headline ?? ''),
+                          reason: pick(inputReason, currentData.reason ?? ''),
+                          announcement: pick(inputAnnouncement, currentData.announcement ?? ''),
+                          message: pick(inputMessage, currentData.message ?? ''),
+                          startDate: pick(inputStartDate, currentData.startDate ?? ''),
+                          endDate: pick(inputEndDate, currentData.endDate ?? ''),
+                      };
+
+                      fs.writeFileSync(path, JSON.stringify(newData, null, 4) + '\n');
+                      console.log('Updated closure-notice.json:', JSON.stringify(newData, null, 2));
+
+            - name: Commit and push changes
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+                  git add src/data/closure-notice.json
+                  git commit -m "chore(notice): update closure notice via GitHub Action [skip ci]" || echo "No changes to commit"
+                  git push origin main
