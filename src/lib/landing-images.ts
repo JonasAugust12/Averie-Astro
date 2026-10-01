@@ -12,6 +12,7 @@ import heroOrnament02 from '@/assets/landing/ornaments/hero02.webp';
 import heroOrnament03 from '@/assets/landing/ornaments/hero03.webp';
 import logo from '@/assets/landing/ornaments/logo.webp';
 import usaFlag from '@/assets/landing/ornaments/usaflag.webp';
+import giftCard from '@/assets/landing/50adf811-490d-40e8-a8e3-dd3c2b72959f.webp';
 
 export const landingImages = {
     hero,
@@ -26,6 +27,7 @@ export const landingImages = {
     heroOrnament03,
     logo,
     usaFlag,
+    giftCard,
 } satisfies Record<string, ImageMetadata>;
 
 /** Preserve source aspect ratio when generating optimized variants. */
