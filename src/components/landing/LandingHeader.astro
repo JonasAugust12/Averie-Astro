@@ -1,10 +1,11 @@
 ---
 import { isClosureNoticeActive } from '@/lib/closure-notice';
 import { isPromotionActive } from '@/lib/promotion';
-import { bookingUrl } from '@/lib/site';
+import { bookingUrl, SEO } from '@/lib/site';
 import { landingImages } from '@/lib/landing-images';
 import LanguageSwitcher from '@/components/landing/LanguageSwitcher.astro';
 import LandingImage from '@/components/landing/LandingImage.astro';
+import DecorativeImage from '@/components/landing/DecorativeImage.astro';
 import { landingInteractive } from '@/lib/styles';
 
 const nav = [
@@ -18,12 +19,12 @@ const nav = [
 ];
 ---
 
-<header class="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4 md:px-8 md:pt-5">
+<header class="sticky top-0 z-50 px-2.5 pt-2.5 sm:px-4 sm:pt-4 md:px-8 md:pt-5">
     <div
         id="landing-nav-shell"
-        class="border border-white/70 bg-cream/70 shadow-[0_8px_32px_rgb(58_48_39/0.08)] backdrop-blur-xl transition-[border-radius] duration-300 rounded-3xl px-4 py-2.5 sm:py-3 md:px-6 md:py-3.5"
+        class="border border-white/70 bg-cream/70 shadow-[0_8px_32px_rgb(58_48_39/0.08)] backdrop-blur-xl transition-[border-radius] duration-300 rounded-3xl px-3 py-2 sm:px-4 sm:py-3 md:px-6 md:py-3.5"
     >
-        <nav class="relative flex items-center justify-between gap-3">
+        <nav class="relative flex items-center justify-between gap-2 sm:gap-3">
             <a href="/" class={`relative z-10 shrink-0 ${landingInteractive}`}>
                 <LandingImage
                     src={landingImages.logo}
@@ -31,7 +32,7 @@ const nav = [
                     width={157}
                     height={50}
                     priority
-                    class="h-10 w-32 object-contain object-left sm:h-11 sm:w-36 md:h-12.5 md:w-39.25"
+                    class="h-8.5 w-27 object-contain object-left sm:h-11 sm:w-36 md:h-12.5 md:w-39.25"
                 />
             </a>
 
@@ -50,7 +51,39 @@ const nav = [
                 }
             </div>
 
-            <div class="relative z-10 flex items-center gap-2 sm:gap-3">
+            <div class="relative z-10 flex items-center gap-1.5 sm:gap-2.5">
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                    <a
+                        href={SEO.social.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class={`group relative flex size-8 items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:scale-95 touch-manipulation sm:size-8.5 lg:size-9 ${landingInteractive}`}
+                        aria-label="Follow us on Instagram"
+                        title="Instagram @averienailspa"
+                    >
+                        <DecorativeImage
+                            src="/icons/instagram.svg"
+                            width={32}
+                            height={32}
+                            class="size-7 drop-shadow-[0_3px_8px_rgba(220,39,67,0.22)] transition-all duration-300 group-hover:scale-112 group-hover:-rotate-3 group-hover:drop-shadow-[0_6px_14px_rgba(220,39,67,0.38)] sm:size-7.5 lg:size-8"
+                        />
+                    </a>
+                    <a
+                        href={SEO.social.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class={`group relative flex size-8 items-center justify-center transition-all duration-300 hover:-translate-y-0.5 active:scale-95 touch-manipulation sm:size-8.5 lg:size-9 ${landingInteractive}`}
+                        aria-label="Follow us on Facebook"
+                        title="Facebook Averie Nails Spa"
+                    >
+                        <DecorativeImage
+                            src="/icons/facebook.svg"
+                            width={32}
+                            height={32}
+                            class="size-7 drop-shadow-[0_3px_8px_rgba(24,119,242,0.22)] transition-all duration-300 group-hover:scale-112 group-hover:rotate-3 group-hover:drop-shadow-[0_6px_14px_rgba(24,119,242,0.38)] sm:size-7.5 lg:size-8"
+                        />
+                    </a>
+                </div>
                 <LanguageSwitcher />
                 <a
                     href={bookingUrl()}
@@ -62,7 +95,7 @@ const nav = [
                 <button
                     type="button"
                     id="landing-nav-toggle"
-                    class={`flex size-11 items-center justify-center rounded-full border border-stone-200/50 bg-white/70 text-third shadow-2xs transition-colors hover:bg-white active:scale-95 touch-manipulation lg:hidden ${landingInteractive}`}
+                    class={`flex size-9.5 items-center justify-center rounded-full border border-nude/25 bg-linear-to-b from-white via-white/95 to-secondary-50/90 text-third shadow-[0_3px_12px_-2px_rgba(148,90,66,0.16),inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-white/60 transition-all hover:bg-white active:scale-95 touch-manipulation sm:size-10 lg:hidden ${landingInteractive}`}
                     aria-label="Menu"
                     aria-expanded="false"
                     aria-controls="landing-mobile-menu"
