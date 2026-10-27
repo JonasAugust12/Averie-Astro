@@ -16,16 +16,11 @@ export interface PromotionConfig {
 
 export const promotion = promotionData as PromotionConfig;
 
-/** True when the flag is on and today is inside the optional start/end window. */
+/** True when the flag is on and the promotion has not expired. */
 export function isPromotionActive(promo: PromotionConfig = promotion): boolean {
     if (!promo.enabled) return false;
 
     const now = new Date();
-
-    if (promo.startDate) {
-        const start = new Date(`${promo.startDate}T00:00:00`);
-        if (now < start) return false;
-    }
 
     if (promo.endDate) {
         const end = new Date(`${promo.endDate}T23:59:59`);

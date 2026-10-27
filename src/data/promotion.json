@@ -1,13 +1,13 @@
 {
-    "enabled": false,
-    "title": "Summer Nail Special",
-    "description": "Treat yourself to beautiful nails this summer! Enjoy 15% off selected nail services for a limited time. Book your appointment today and let us take care of the rest.",
-    "imageUrl": "https://res.cloudinary.com/dpndyuheh/image/upload/v1787237371/Cream_Red_Minimalist_Nail_Art_Salon_Promotion_Instagram_Post_xtong3.webp",
-    "imageWidth": 800,
-    "imageHeight": 1000,
-    "color": "#fd735d",
-    "startDate": "2026-08-01",
-    "endDate": "2026-08-31",
-    "ctaText": "Book Appointment",
+    "enabled": true,
+    "title": "Under New Management – 10% Off Your Service",
+    "description": "Come visit us under new management and enjoy beautiful nails, friendly service, and a relaxing atmosphere!",
+    "imageUrl": "https://res.cloudinary.com/dpndyuheh/image/upload/v1793114670/6b4e6b06-2e47-4fa6-be1a-4d1ce2325bcb_wdf3oe.jpg",
+    "imageWidth": 731,
+    "imageHeight": 1024,
+    "color": "#e0577b",
+    "startDate": "2026-11-01",
+    "endDate": "2026-11-14",
+    "ctaText": "Book Your Appointment Today",
     "ctaLink": "https://www.lldtek.org/salon/appt/VFVGZk1USXpPVEk9"
 }
