@@ -50,13 +50,13 @@ export const priceCategories: PriceCategory[] = [
                 name: 'Dazzel Manicure',
                 price: '$35.00',
                 description:
-                    'Chocolate milk soak, cuticle & nail care, chocolate sugar soufflé scrub, cappuccino mask, hot towel, massage, and polish. A sweet, soothing choice for sensitive skin.',
+                    'A premium, fast-drying nail polish that delivers a beautiful, glossy finish with longer-lasting wear.',
             },
             {
                 name: 'Dazzel Pedicure',
                 price: '$50.00',
                 description:
-                    'Chocolate milk soak, cuticle & nail care, chocolate sugar soufflé scrub, cappuccino hydrating foot mask with shea butter & caffeine, warm towels, hot stone massage, and polish.',
+                    'A premium, fast-drying nail polish that delivers a beautiful, glossy finish with longer-lasting wear.',
             },
             {
                 name: 'Express Manicure',
@@ -109,16 +109,6 @@ export const priceCategories: PriceCategory[] = [
         icon: 'gel',
         items: [
             {
-                name: 'Gel Color Change Nails',
-                price: '$35.00',
-                description: 'Removal of old polish and a fresh gel color on the nails.',
-            },
-            {
-                name: 'Gel Color Change Toes',
-                price: '$40.00',
-                description: 'Removal of old polish and a fresh gel color on the toes.',
-            },
-            {
                 name: 'Gel Manicure',
                 price: '$40.00',
                 description: 'Complete manicure with premium gel polish cured under LED light.',
@@ -127,6 +117,16 @@ export const priceCategories: PriceCategory[] = [
                 name: 'Gel Pedicure',
                 price: '$60.00',
                 description: 'Complete pedicure with a long-lasting gel polish finish.',
+            },
+            {
+                name: 'Gel Color Change Nails',
+                price: '$35.00',
+                description: 'Removal of old polish and a fresh gel color on the nails.',
+            },
+            {
+                name: 'Gel Color Change Toes',
+                price: '$40.00',
+                description: 'Removal of old polish and a fresh gel color on the toes.',
             },
         ],
     },
